@@ -2,10 +2,10 @@ import {Popover, PopoverContent, PopoverTrigger} from "@nextui-org/popover";
 import {Avatar} from "@nextui-org/avatar";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
+import NavbarUserContent from "@/components/NavbarUserContent";
 
 const NavbarUser = async () => {
 	const session = await getServerSession(authOptions);
-	console.log(session);
 	return (
 		<Popover showArrow placement="bottom">
 			<PopoverTrigger>
@@ -18,7 +18,7 @@ const NavbarUser = async () => {
 				/>
 			</PopoverTrigger>
 			<PopoverContent>
-				<p>Content</p>
+				<NavbarUserContent name={session.user.name}/>
 			</PopoverContent>
 		</Popover>
 	);
