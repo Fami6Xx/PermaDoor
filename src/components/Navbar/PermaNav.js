@@ -8,7 +8,7 @@ const PermaNav = async () => {
 	const siteInfo = {
 		name: "PD",
 		logo:
-			<div className={"m-1"}>
+			<div className={"m-1 ml-3"}>
 				<Image
 					src="https://cdn.discordapp.com/app-icons/1126625590770925628/ba49f2dbe1be940037b34820f0b1a23c.png?size=256"
 					alt="ICON"

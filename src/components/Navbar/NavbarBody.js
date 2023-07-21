@@ -30,7 +30,6 @@ const NavbarBody = ({routes, children}) => {
 								className="w-full"
 								href={item.pathname}
 								size="lg"
-								prefetch="false" //Personal preference
 							>
 								{item.name}
 							</Link>
