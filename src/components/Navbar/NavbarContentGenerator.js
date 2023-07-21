@@ -7,11 +7,15 @@ import {NavbarItem} from "@nextui-org/navbar";
 const NavbarContentGenerator = ({routes}) => {
 	const pathname = usePathname();
 
+	const checkRoute = (desiredPath) => {
+		return pathname === desiredPath;
+	}
+
 	return (
 		<>
 			{
-				routes.map((route) => (
-					<NavbarItem as={Link} isActive={pathname === route.pathname} color="foreground" href={route.pathname}>{route.name}</NavbarItem>
+				routes.map((route, index) => (
+					<NavbarItem key={`${route.name}-${index}`} as={Link} isActive={checkRoute(route.pathname)} color={checkRoute(route.pathname) ? "" : "foreground"} href={route.pathname}>{route.name}</NavbarItem>
 				))
 			}
 		</>
