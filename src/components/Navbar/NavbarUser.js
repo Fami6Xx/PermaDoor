@@ -2,7 +2,7 @@ import {Popover, PopoverContent, PopoverTrigger} from "@nextui-org/popover";
 import {Avatar} from "@nextui-org/avatar";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
-import NavbarUserContent from "@/components/NavbarUserContent";
+import NavbarUserContent from "@/components/Navbar/NavbarUserContent";
 
 const NavbarUser = async () => {
 	const session = await getServerSession(authOptions);
