@@ -1,12 +1,21 @@
-import {Navbar, NavbarBrand, NavbarContent} from "@nextui-org/navbar";
+import {NavbarBrand, NavbarContent} from "@nextui-org/navbar";
 import NavbarUser from "@/components/Navbar/NavbarUser";
 import NavbarContentGenerator from "@/components/Navbar/NavbarContentGenerator";
+import Image from "next/image";
+import NavbarBody from "@/components/Navbar/NavbarBody";
 
 const PermaNav = async () => {
-	// If session is needed in here, then remove it from NavbarUser and move it here.
 	const siteInfo = {
 		name: "PD",
-		logo: <></>,
+		logo:
+			<div className={"m-1"}>
+				<Image
+					src="https://cdn.discordapp.com/app-icons/1126625590770925628/ba49f2dbe1be940037b34820f0b1a23c.png?size=256"
+					alt="ICON"
+					width={32}
+					height={32}
+				/>
+			</div>,
 		routes: [
 			{
 				name: "Home",
@@ -32,7 +41,7 @@ const PermaNav = async () => {
 	};
 
 	return (
-		<Navbar>
+		<NavbarBody routes={siteInfo.routes}>
 			<NavbarBrand>
 				{siteInfo.logo}
 				<p className="font-bold text-inherit">{siteInfo.name}</p>
@@ -43,7 +52,7 @@ const PermaNav = async () => {
 			<NavbarContent justify="end">
 				<NavbarUser/>
 			</NavbarContent>
-		</Navbar>
+		</NavbarBody>
 	);
 };
 
