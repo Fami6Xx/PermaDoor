@@ -15,7 +15,7 @@ const NavbarBody = ({routes, children}) => {
 	}
 
 	return (
-		<Navbar onMenuOpenChange={setIsMenuOpen} isBordered>
+		<Navbar onMenuOpenChange={setIsMenuOpen} isBordered isMenuOpen={isMenuOpen}>
 			<NavbarMenuToggle
 				aria-label={isMenuOpen ? "Close menu" : "Open menu"}
 				className="sm:hidden"
