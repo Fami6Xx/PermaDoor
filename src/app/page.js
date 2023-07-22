@@ -7,7 +7,7 @@ import PermaNav from "@/components/Navbar/PermaNav";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
-  console.log(session);
+
   if(session){
     return (
       <>
