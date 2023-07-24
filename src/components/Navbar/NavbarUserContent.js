@@ -7,6 +7,7 @@ import {Spacer} from "@nextui-org/spacer";
 
 const NavbarUserContent = ({name}) => {
 	const router = useRouter();
+	// ToDo: integrate settings passed down to this as props
 	return (
 		<>
 			<Spacer y={2}/>
