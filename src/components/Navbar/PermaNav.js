@@ -16,6 +16,26 @@ const PermaNav = async () => {
 					height={32}
 				/>
 			</div>,
+		authentication: {
+			enabled: true,
+			showUser: true,
+			userRoutes: [
+				{
+					name: "Logout",
+					pathname: "/api/auth/signout"
+				},
+			],
+			buttons: {
+				login: {
+					enabled: false,
+					pathname: "/api/auth/signin"
+				},
+				register: {
+					enabled: false,
+					pathname: "/api/auth/signin"
+				},
+			},
+		},
 		routes: [
 			{
 				name: "Home",
