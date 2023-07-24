@@ -17,7 +17,7 @@ const PermaNav = async () => {
 				/>
 			</div>,
 		authentication: {
-			enabled: true,
+			enabled: false,
 			showUser: true,
 			userRoutes: [
 				{
@@ -69,9 +69,13 @@ const PermaNav = async () => {
 			<NavbarContent justify="center" className="hidden sm:flex gap-4">
 				<NavbarContentGenerator routes={siteInfo.routes}/>
 			</NavbarContent>
-			<NavbarContent justify="end">
-				<NavbarUser/>
-			</NavbarContent>
+			{siteInfo.authentication.enabled ?
+				<NavbarContent justify="end">
+					{siteInfo.authentication.showUser ? <NavbarUser authentication={siteInfo.authentication}/> : <></>}
+				</NavbarContent>
+				:
+				<NavbarContent justify="end"></NavbarContent>
+			}
 		</NavbarBody>
 	);
 };
