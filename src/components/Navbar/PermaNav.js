@@ -17,7 +17,7 @@ const PermaNav = async () => {
 				/>
 			</div>,
 		authentication: {
-			enabled: false,
+			enabled: true,
 			showUser: true,
 			userRoutes: [
 				{
@@ -27,11 +27,11 @@ const PermaNav = async () => {
 			],
 			buttons: {
 				login: {
-					enabled: false,
+					enabled: true,
 					pathname: "/api/auth/signin"
 				},
 				register: {
-					enabled: false,
+					enabled: true,
 					pathname: "/api/auth/signin"
 				},
 			},

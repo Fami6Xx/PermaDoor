@@ -3,7 +3,7 @@ import {Avatar} from "@nextui-org/avatar";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import NavbarUserContent from "@/components/Navbar/NavbarUserContent";
-import {Button} from "@nextui-org/button";
+import {Button, ButtonGroup} from "@nextui-org/button";
 
 const NavbarUser = async ({authentication}) => {
 	const session = await getServerSession(authOptions);
@@ -25,11 +25,20 @@ const NavbarUser = async ({authentication}) => {
 			</Popover>
 		);
 	}else {
-		// ToDo: Maybe recode it to be as ButtonGroup not as two buttons, it could look better
 		return (
 			<>
-				{authentication.buttons.login.enabled ? <Button color="primary" variant="faded">LOGIN</Button> : <></>}
-				{authentication.buttons.register.enabled ? <Button color="primary" variant="faded">REGISTER</Button> : <></>}
+				{
+					authentication.buttons.login.enabled && authentication.buttons.register.enabled ?
+						<ButtonGroup variant="ghost">
+							<Button>Login</Button>
+							<Button>Register</Button>
+						</ButtonGroup>
+						:
+						<>
+							{authentication.buttons.login.enabled ? <Button variant="ghost">Login</Button> : <></>}
+							{authentication.buttons.register.enabled ? <Button variant="ghost">Register</Button> : <></>}
+						</>
+				}
 			</>
 		);
 	}

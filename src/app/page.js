@@ -8,17 +8,9 @@ import PermaNav from "@/components/Navbar/PermaNav";
 export default async function Home() {
   const session = await getServerSession(authOptions);
 
-  if(session){
-    return (
-      <>
-        <PermaNav/>
-        <Button size="md" variant="ghost">Ehm hello</Button>
-        <p>{session.user.name}</p>
-        <Image width={64} height={64} src={session.user.image} alt="profilePic"/>
-        <pre>{JSON.stringify(session)}</pre>
-      </>
-    )
-  }else{
-    redirect("/api/auth/signin")
-  }
+  return (
+    <>
+      <PermaNav/>
+    </>
+  )
 }
