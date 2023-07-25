@@ -1,12 +1,9 @@
 import {Popover, PopoverContent, PopoverTrigger} from "@nextui-org/popover";
 import {Avatar} from "@nextui-org/avatar";
-import {getServerSession} from "next-auth";
-import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import NavbarUserContent from "@/components/Navbar/NavbarUserContent";
-import {Button, ButtonGroup} from "@nextui-org/button";
+import NavbarAuth from "@/components/Navbar/NavbarAuth";
 
-const NavbarUser = async ({authentication}) => {
-	const session = await getServerSession(authOptions);
+const NavbarUser = async ({authentication, session}) => {
 	if(session) {
 		return (
 			<Popover showArrow placement="bottom">
@@ -27,18 +24,7 @@ const NavbarUser = async ({authentication}) => {
 	}else {
 		return (
 			<>
-				{
-					authentication.buttons.login.enabled && authentication.buttons.register.enabled ?
-						<ButtonGroup variant="ghost">
-							<Button>Login</Button>
-							<Button>Register</Button>
-						</ButtonGroup>
-						:
-						<>
-							{authentication.buttons.login.enabled ? <Button variant="ghost">Login</Button> : <></>}
-							{authentication.buttons.register.enabled ? <Button variant="ghost">Register</Button> : <></>}
-						</>
-				}
+				<NavbarAuth settings={authentication.buttons}/>
 			</>
 		);
 	}

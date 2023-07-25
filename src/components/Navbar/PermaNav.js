@@ -3,6 +3,8 @@ import NavbarUser from "@/components/Navbar/NavbarUser";
 import NavbarContentGenerator from "@/components/Navbar/NavbarContentGenerator";
 import Image from "next/image";
 import NavbarBody from "@/components/Navbar/NavbarBody";
+import {getServerSession} from "next-auth";
+import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
 const PermaNav = async () => {
 	const siteInfo = {
@@ -12,13 +14,13 @@ const PermaNav = async () => {
 				<Image
 					src="https://cdn.discordapp.com/app-icons/1126625590770925628/ba49f2dbe1be940037b34820f0b1a23c.png?size=256"
 					alt="ICON"
+					priority={true}
 					width={32}
 					height={32}
 				/>
 			</div>,
 		authentication: {
 			enabled: true,
-			showUser: true,
 			userRoutes: [
 				{
 					name: "Logout",
@@ -60,8 +62,10 @@ const PermaNav = async () => {
 		],
 	};
 
+	const session = await getServerSession(authOptions);
+
 	return (
-		<NavbarBody routes={siteInfo.routes}>
+		<NavbarBody routes={siteInfo.routes} userRoutes={session ? siteInfo.authentication.userRoutes : false}>
 			<NavbarBrand>
 				{siteInfo.logo}
 				<p className="font-bold text-inherit">{siteInfo.name}</p>
@@ -69,17 +73,13 @@ const PermaNav = async () => {
 			<NavbarContent justify="center" className="hidden sm:flex gap-4">
 				<NavbarContentGenerator routes={siteInfo.routes}/>
 			</NavbarContent>
-			{siteInfo.authentication.enabled ?
-				<NavbarContent justify="end">
-					{siteInfo.authentication.showUser ?
-						<NavbarUser authentication={siteInfo.authentication}/>
-						:
-						<></>
-					}
-				</NavbarContent>
-				:
-				<NavbarContent justify="end"></NavbarContent>
-			}
+			<NavbarContent justify="end">
+				{siteInfo.authentication.enabled ?
+					<NavbarUser authentication={siteInfo.authentication} session={session}/>
+					:
+					<></>
+				}
+			</NavbarContent>
 		</NavbarBody>
 	);
 };

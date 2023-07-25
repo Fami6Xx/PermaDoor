@@ -1,12 +1,14 @@
 "use client";
 
-import React from 'react';
 import {Navbar, NavbarMenu, NavbarMenuItem, NavbarMenuToggle} from "@nextui-org/navbar";
 import {Link} from "@nextui-org/link";
 import {usePathname} from "next/navigation";
+import {Spacer} from "@nextui-org/spacer";
+import {Divider} from "@nextui-org/divider";
+import {useState} from "react";
 
-const NavbarBody = ({routes, children}) => {
-	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+const NavbarBody = ({routes, children, userRoutes}) => {
+	const [isMenuOpen, setIsMenuOpen] = useState(false);
 
 	const pathname = usePathname();
 
@@ -35,6 +37,30 @@ const NavbarBody = ({routes, children}) => {
 							</Link>
 						</NavbarMenuItem>
 					))
+				}
+				{
+					userRoutes ?
+						<>
+							<Spacer y={2}/>
+							<Divider/>
+							<Spacer y={2}/>
+							{
+								userRoutes.map((item, index) => (
+									<NavbarMenuItem key={`${item.name}-${index}`}>
+										<Link
+											color={checkRoute(item.pathname) ? "primary" : "foreground"}
+											className="w-full"
+											href={item.pathname}
+											size="lg"
+										>
+											{item.name}
+										</Link>
+									</NavbarMenuItem>
+								))
+							}
+						</>
+						:
+						<></>
 				}
 			</NavbarMenu>
 		</Navbar>
