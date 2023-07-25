@@ -71,7 +71,11 @@ const PermaNav = async () => {
 			</NavbarContent>
 			{siteInfo.authentication.enabled ?
 				<NavbarContent justify="end">
-					{siteInfo.authentication.showUser ? <NavbarUser authentication={siteInfo.authentication}/> : <></>}
+					{siteInfo.authentication.showUser ?
+						<NavbarUser authentication={siteInfo.authentication}/>
+						:
+						<></>
+					}
 				</NavbarContent>
 				:
 				<NavbarContent justify="end"></NavbarContent>
