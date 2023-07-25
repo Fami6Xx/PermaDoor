@@ -1,21 +1,16 @@
 "use client";
 
 import {useRouter} from "next/navigation";
-import {Button} from "@nextui-org/button";
-import {Divider} from "@nextui-org/divider";
-import {Spacer} from "@nextui-org/spacer";
+import {DropdownItem, DropdownSection} from "@nextui-org/dropdown";
 
-const NavbarUserContent = ({name}) => {
+const NavbarUserContent = ({name, email, routes}) => {
 	const router = useRouter();
-	// ToDo: integrate settings passed down to this as props
+
 	return (
 		<>
-			<Spacer y={2}/>
-			<p>{name}</p>
-			<Spacer y={2}/>
-			<Divider/>
-			<Spacer y={1}/>
-			<Button variant="light" size="md" radius="sm" onPress={(e) => {router.push("/api/auth/signout")}}>Logout</Button>
+			<DropdownSection title={"User"}>
+				<DropdownItem key={"userInformation"} isReadOnly title={name} description={email}/>
+			</DropdownSection>
 		</>
 	);
 };

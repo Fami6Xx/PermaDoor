@@ -1,25 +1,26 @@
-import {Popover, PopoverContent, PopoverTrigger} from "@nextui-org/popover";
 import {Avatar} from "@nextui-org/avatar";
 import NavbarUserContent from "@/components/Navbar/NavbarUserContent";
 import NavbarAuth from "@/components/Navbar/NavbarAuth";
+import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/dropdown";
 
 const NavbarUser = async ({authentication, session}) => {
+	// ToDo: Until not fixed in react-aria this dropdown wont work in server components
 	if(session) {
 		return (
-			<Popover showArrow placement="bottom">
-				<PopoverTrigger>
+			<Dropdown>
+				<DropdownTrigger>
 					<Avatar
 						showFallback
 						isBordered
 						src={session.user.image}
 						radius="sm"
-						className="transition-transform"
+						aria-label="User menu"
 					/>
-				</PopoverTrigger>
-				<PopoverContent>
-					<NavbarUserContent name={session.user.name} routes={authentication.userRoutes}/>
-				</PopoverContent>
-			</Popover>
+				</DropdownTrigger>
+				<DropdownMenu variant="faded" aria-label="Dropdown user menu">
+					<DropdownItem key="mother" title="Your Mother" description="Not gonna give you up"/>
+				</DropdownMenu>
+			</Dropdown>
 		);
 	}else {
 		return (
