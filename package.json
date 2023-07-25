@@ -16,7 +16,6 @@
     "@nextui-org/dropdown": "^0.0.0-dev-v2-20230719131057",
     "@nextui-org/link": "dev-v2",
     "@nextui-org/navbar": "dev-v2",
-    "@nextui-org/popover": "dev-v2",
     "@nextui-org/react": "dev-v2",
     "@nextui-org/spacer": "dev-v2",
     "@nextui-org/tooltip": "dev-v2",
