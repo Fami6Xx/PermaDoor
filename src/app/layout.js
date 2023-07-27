@@ -1,5 +1,6 @@
 import "./globals.css";
 import {Providers} from "@/app/providers";
+import PermaNav from "@/components/Navbar/PermaNav";
 
 export const metadata = {
   title: 'PermaDoor',
@@ -11,6 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en" className="dark">
       <body>
         <Providers>
+          <PermaNav/>
           {children}
         </Providers>
       </body>
