@@ -7,6 +7,7 @@ import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
 const NavbarUser = async ({authentication, session}) => {
 	// ToDo: Until not fixed in react-aria this dropdown wont work in server components
+	const providers = await getProviders();
 	let styles = {};
 
 	authOptions.providers.map((config) => (
@@ -35,7 +36,7 @@ const NavbarUser = async ({authentication, session}) => {
 			<>
 				{
 					authentication.useNextAuth ?
-						<NavbarNextAuth providers={await getProviders()} providerStyles={styles}/>
+						<NavbarNextAuth providers={providers} providerStyles={styles}/>
 						:
 						<NavbarSimpleAuth settings={authentication.buttons}/>
 				}
