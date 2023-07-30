@@ -3,7 +3,7 @@
 import {Button, ButtonGroup} from "@nextui-org/button";
 import {useRouter} from "next/navigation";
 
-const NavbarAuth = ({settings}) => {
+const NavbarSimpleAuth = ({settings}) => {
 	const router = useRouter();
 
 	return (
@@ -24,4 +24,4 @@ const NavbarAuth = ({settings}) => {
 	);
 };
 
-export default NavbarAuth;
+export default NavbarSimpleAuth;
