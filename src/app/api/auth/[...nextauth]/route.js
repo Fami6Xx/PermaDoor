@@ -6,6 +6,7 @@ import {PrismaAdapter} from "@auth/prisma-adapter";
 export const authOptions = {
 	adapter: PrismaAdapter(prisma),
 	secret: process.env.AUTH_SECRET,
+	debug: true,
 	providers: [
 		DiscordProvider({
 			clientId: process.env.DISCORD_CLIENT_ID,
@@ -19,15 +20,20 @@ export const authOptions = {
 					profile.image_url = `https://cdn.discordapp.com/avatars/${profile.id}/${profile.avatar}.${format}`
 				}
 
-				return {
+				const resultingProfile = {
 					id: profile.id,
 					discordId: profile.id,
 					name: profile.username,
 					global_name: profile.global_name,
 					two_factor_enabled: profile.mfa_enabled,
 					email: profile.email,
+					emailVerified: profile.verified,
 					image: profile.image_url,
 				}
+
+				checkUpdate(resultingProfile);
+
+				return resultingProfile;
 			},
 		})
 	],
@@ -39,7 +45,9 @@ export const authOptions = {
 			session.user.displayName = user.global_name;
 			session.user.two_factor_enabled = user.two_factor_enabled;
 			session.user.email = user.email;
+			session.user.emailVerified = user.emailVerified;
 			session.user.image = user.image;
+			console.log(session);
 
 			return session
 		}
@@ -47,5 +55,32 @@ export const authOptions = {
 };
 
 const handler = NextAuth(authOptions)
+
+const checkUpdate = async (profile) => {
+	const user = await prisma.user.findFirst({
+		where: {
+			discordId: profile.discordId
+		}
+	});
+
+	if(!user) return;
+
+	let needsUpdate = {};
+
+	Object.keys(profile).forEach((key) => {
+		if(!user[key] && key !== "emailVerified") return;
+
+		if(profile[key] !== user[key] && key !== "id"){
+			needsUpdate[key] = profile[key];
+		}
+	})
+
+	await prisma.user.update({
+		where: {
+			id: user.id
+		},
+		data: needsUpdate
+	})
+}
 
 export { handler as GET, handler as POST }
