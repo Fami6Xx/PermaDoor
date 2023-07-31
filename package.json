@@ -16,7 +16,7 @@
     "@nextui-org/divider": "dev-v2",
     "@nextui-org/dropdown": "dev-v2",
     "@nextui-org/link": "dev-v2",
-    "@nextui-org/modal": "^0.0.0-dev-v2-20230728014036",
+    "@nextui-org/modal": "dev-v2",
     "@nextui-org/navbar": "dev-v2",
     "@nextui-org/react": "dev-v2",
     "@nextui-org/spacer": "dev-v2",
