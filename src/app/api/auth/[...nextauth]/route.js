@@ -68,12 +68,11 @@ const checkUpdate = async (profile) => {
 	let needsUpdate = {};
 
 	Object.keys(profile).forEach((key) => {
-		if(!user[key] && key !== "emailVerified") return;
-
 		if(profile[key] !== user[key] && key !== "id"){
 			needsUpdate[key] = profile[key];
 		}
 	})
+	console.log(needsUpdate);
 
 	await prisma.user.update({
 		where: {
