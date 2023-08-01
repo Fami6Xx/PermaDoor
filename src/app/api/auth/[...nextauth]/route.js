@@ -6,7 +6,6 @@ import {PrismaAdapter} from "@auth/prisma-adapter";
 export const authOptions = {
 	adapter: PrismaAdapter(prisma),
 	secret: process.env.AUTH_SECRET,
-	debug: true,
 	providers: [
 		DiscordProvider({
 			clientId: process.env.DISCORD_CLIENT_ID,
@@ -71,15 +70,14 @@ const checkUpdate = async (profile) => {
 		if(profile[key] !== user[key] && key !== "id"){
 			needsUpdate[key] = profile[key];
 		}
-	})
-	console.log(needsUpdate);
+	});
 
 	await prisma.user.update({
 		where: {
 			id: user.id
 		},
 		data: needsUpdate
-	})
+	});
 }
 
 export { handler as GET, handler as POST }
