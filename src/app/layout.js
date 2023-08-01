@@ -8,7 +8,7 @@ export const metadata = {
   openGraph: {
     title: "PermaDoor",
     description: "This site was made only for testing and learning purposes by developer Fami6Xx",
-    url: "https://perma-door.vercel.com",
+    url: "https://perma-door.vercel.app",
     siteName: "PermaDoor",
     type: "website",
     locale: "en_US",
