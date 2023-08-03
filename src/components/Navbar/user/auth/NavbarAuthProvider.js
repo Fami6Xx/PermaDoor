@@ -26,7 +26,7 @@ const NavbarAuthProvider = ({logo, logoDark, children, providerId, providerName}
 				}
 				onPress={() => signIn(providerId)}
 			>
-				{...children}
+				{children}
 			</Button>
 		</>
 	);

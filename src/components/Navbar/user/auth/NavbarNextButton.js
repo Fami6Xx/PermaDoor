@@ -15,7 +15,7 @@ const NavbarNextButton = (props) => {
 				size="xs"
 				onOpenChange={onOpenChange}
 			>
-				{...props.children}
+				{props.children}
 			</Modal>
 		</>
 	);

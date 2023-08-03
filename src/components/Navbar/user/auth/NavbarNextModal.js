@@ -1,6 +1,4 @@
 import {ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/modal";
-import {Button} from "@nextui-org/button";
-import {signIn} from "next-auth/react";
 import NavbarAuthProvider from "@/components/Navbar/user/auth/NavbarAuthProvider";
 
 const NavbarNextModal = ({providers, providerStyles}) => {
