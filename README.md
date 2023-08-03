@@ -4,7 +4,7 @@ Hello! If you're reading this then you must be special because this is only a te
 
 Currently (July 2023) the NextUI is in development so occasional ui bugs might happen!
 
-I used SQLite as i didn't want to start a database every time i wanted to program something.
+I used Postgres as my database and Vercel as my deploy site.
 
 ## First start
 Edit your .env file.
