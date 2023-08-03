@@ -2,8 +2,9 @@ import {Avatar} from "@nextui-org/avatar";
 import NavbarSimpleAuth from "@/components/Navbar/NavbarSimpleAuth";
 import {Dropdown, DropdownItem, DropdownMenu, DropdownTrigger} from "@nextui-org/dropdown";
 import {getProviders} from "next-auth/react";
-import NavbarNextAuth from "@/components/Navbar/NavbarNextAuth";
+import NavbarNextButton from "@/components/Navbar/NavbarNextButton";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
+import NavbarNextModal from "@/components/Navbar/NavbarNextModal";
 
 const NavbarUser = async ({authentication, session}) => {
 	// ToDo: Until not fixed in react-aria this dropdown wont work in server components
@@ -36,7 +37,11 @@ const NavbarUser = async ({authentication, session}) => {
 			<>
 				{
 					authentication.useNextAuth ?
-						<NavbarNextAuth providers={providers} providerStyles={styles}/>
+						<>
+							<NavbarNextButton>
+								<NavbarNextModal providers={providers} providerStyles={styles}/>
+							</NavbarNextButton>
+						</>
 						:
 						<NavbarSimpleAuth settings={authentication.buttons}/>
 				}
