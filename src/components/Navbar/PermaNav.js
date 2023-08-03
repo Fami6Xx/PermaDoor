@@ -1,5 +1,5 @@
 import {NavbarBrand, NavbarContent} from "@nextui-org/navbar";
-import NavbarUser from "@/components/Navbar/NavbarUser";
+import NavbarUser from "@/components/Navbar/user/NavbarUser";
 import NavbarContentGenerator from "@/components/Navbar/NavbarContentGenerator";
 import Image from "next/image";
 import NavbarBody from "@/components/Navbar/NavbarBody";

@@ -1,7 +1,7 @@
 import {ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/modal";
 import {Button} from "@nextui-org/button";
 import {signIn} from "next-auth/react";
-import NavbarProviderImage from "@/components/Navbar/NavbarProviderImage";
+import NavbarProviderImage from "@/components/Navbar/user/auth/NavbarProviderImage";
 
 const NavbarNextModal = ({providers, providerStyles}) => {
 	return (
