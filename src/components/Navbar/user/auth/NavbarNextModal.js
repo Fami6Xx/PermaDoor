@@ -1,7 +1,7 @@
 import {ModalBody, ModalContent, ModalFooter, ModalHeader} from "@nextui-org/modal";
 import {Button} from "@nextui-org/button";
 import {signIn} from "next-auth/react";
-import NavbarProviderImage from "@/components/Navbar/user/auth/NavbarProviderImage";
+import NavbarAuthProvider from "@/components/Navbar/user/auth/NavbarAuthProvider";
 
 const NavbarNextModal = ({providers, providerStyles}) => {
 	return (
@@ -11,15 +11,14 @@ const NavbarNextModal = ({providers, providerStyles}) => {
 				<ModalBody>
 					{Object.values(providers).map((provider) => (
 						<div key={provider.name}>
-							<Button
-								fullWidth
-								variant="ghost"
-								size="lg"
-								startContent={<NavbarProviderImage logoDark={providerStyles[provider.id].logoDark} logo={providerStyles[provider.id].logo}/>}
-								onPress={() => signIn(provider.id)}
+							<NavbarAuthProvider
+								providerId={provider.id}
+								providerName={provider.name}
+								logo={providerStyles[provider.id].logo}
+								logoDark={providerStyles[provider.id].logoDark}
 							>
 								Sign in with <b>{provider.name}</b>
-							</Button>
+							</NavbarAuthProvider>
 						</div>
 					))}
 				</ModalBody>
