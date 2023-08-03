@@ -46,7 +46,6 @@ export const authOptions = {
 			session.user.email = user.email;
 			session.user.emailVerified = user.emailVerified;
 			session.user.image = user.image;
-			console.log(session);
 
 			return session
 		}
