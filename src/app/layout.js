@@ -5,6 +5,7 @@ import PermaNav from "@/components/Navbar/PermaNav";
 export const metadata = {
   title: 'PermaDoor',
   description: 'Definitely not a Backdoor',
+  metadataBase: "https://perma-door.vercel.app",
   openGraph: {
     title: "PermaDoor",
     description: "This site was made only for testing and learning purposes by developer Fami6Xx",
