@@ -21,7 +21,7 @@ const PermaNav = async () => {
 			</div>,
 		authentication: {
 			enabled: true,
-			useNextAuth: true, // If true then the pathname in authentication buttons will be ignored and a modal will be shown
+			useNextAuth: true, // If true then the settings in buttons are ignored
 			userRoutes: [
 				{
 					name: "Logout",
