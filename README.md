@@ -27,7 +27,7 @@ npm run dev
 ## Database
 If you edit schema.prisma then you need to update the PrismaClient like this:
 ```bash
-npm prisma migrate dev
+npm prisma migrate dev --name *NAME*
 ```
 
 ## Information and sources i used
