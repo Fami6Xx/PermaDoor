@@ -69,6 +69,7 @@ model FriendRequest {
 
 model Conversation {
   id       String    @id @default(cuid())
+  name     String    @default("Conversation")
   users    User[]
   messages Message[]
 }
