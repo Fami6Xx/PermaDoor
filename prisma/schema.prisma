@@ -70,7 +70,7 @@ model Message {
   postedAt        Int
 
   author       User          @relation(fields: [authorId], references: [id])
-  conversation Converstation @relation(fields: [converstationId], references: [id])
+  conversation Converstation @relation(fields: [converstationId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
