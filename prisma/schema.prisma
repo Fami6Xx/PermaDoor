@@ -41,17 +41,36 @@ model Session {
 }
 
 model User {
-  id                 String    @id @default(cuid())
+  id                 String          @id @default(cuid())
   discordId          String
   name               String
   global_name        String
   two_factor_enabled Boolean
-  email              String?   @unique
+  email              String?         @unique
   verified           Boolean?
   emailVerified      Boolean?
   image              String
   accounts           Account[]
   sessions           Session[]
+  messages           Message[]
+  converstation      Converstation[]
+}
+
+model Converstation {
+  id       String    @id @default(cuid())
+  users    User[]
+  messages Message[]
+}
+
+model Message {
+  id              String @id @default(cuid())
+  authorId        String
+  converstationId String
+  message         String
+  postedAt        Int
+
+  author       User          @relation(fields: [authorId], references: [id])
+  conversation Converstation @relation(fields: [converstationId], references: [id])
 }
 
 model VerificationToken {
