@@ -41,36 +41,47 @@ model Session {
 }
 
 model User {
-  id                 String          @id @default(cuid())
-  discordId          String
-  name               String
-  global_name        String
-  two_factor_enabled Boolean
-  email              String?         @unique
-  verified           Boolean?
-  emailVerified      Boolean?
-  image              String
-  accounts           Account[]
-  sessions           Session[]
-  messages           Message[]
-  converstation      Converstation[]
+  id                     String          @id @default(cuid())
+  discordId              String
+  name                   String
+  global_name            String
+  two_factor_enabled     Boolean
+  email                  String?         @unique
+  verified               Boolean?
+  emailVerified          Boolean?
+  image                  String
+  accounts               Account[]
+  sessions               Session[]
+  messages               Message[]
+  conversations          Conversation[]
+  sentFriendRequests     FriendRequest[] @relation("FriendRequestSender")
+  receivedFriendRequests FriendRequest[] @relation("FriendRequestReceiver")
 }
 
-model Converstation {
+model FriendRequest {
+  id         String @id @default(cuid())
+  senderId   String
+  receiverId String
+
+  sender   User @relation("FriendRequestSender", fields: [senderId], references: [id], onDelete: Cascade)
+  receiver User @relation("FriendRequestReceiver", fields: [receiverId], references: [id], onDelete: Cascade)
+}
+
+model Conversation {
   id       String    @id @default(cuid())
   users    User[]
   messages Message[]
 }
 
 model Message {
-  id              String @id @default(cuid())
-  authorId        String
-  converstationId String
-  message         String
-  postedAt        Int
+  id             String @id @default(cuid())
+  authorId       String
+  conversationId String
+  message        String
+  postedAt       Int
 
-  author       User          @relation(fields: [authorId], references: [id])
-  conversation Converstation @relation(fields: [converstationId], references: [id], onDelete: Cascade)
+  author       User         @relation(fields: [authorId], references: [id])
+  conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
 }
 
 model VerificationToken {
