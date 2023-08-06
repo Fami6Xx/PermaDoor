@@ -5,6 +5,7 @@ import Image from "next/image";
 import NavbarBody from "@/components/Navbar/NavbarBody";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
+import {getProviders} from "next-auth/react";
 
 const PermaNav = async () => {
 	const siteInfo = {
@@ -65,6 +66,14 @@ const PermaNav = async () => {
 
 	const session = await getServerSession(authOptions);
 
+	// Providers and styles will be moved to NavbarUser when the bugs are fixed
+	const providers = await getProviders();
+	let styles = {};
+
+	authOptions.providers.map((config) => (
+		styles[config.id] = config.style
+	));
+
 	return (
 		<NavbarBody routes={siteInfo.routes} userRoutes={session ? siteInfo.authentication.userRoutes : false}>
 			<NavbarBrand>
@@ -76,7 +85,7 @@ const PermaNav = async () => {
 			</NavbarContent>
 			<NavbarContent justify="end">
 				{siteInfo.authentication.enabled ?
-					<NavbarUser authentication={siteInfo.authentication} session={session}/>
+					<NavbarUser authentication={siteInfo.authentication} session={session} providers={providers} styles={styles}/>
 					:
 					<></>
 				}
