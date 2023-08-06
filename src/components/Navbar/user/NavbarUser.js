@@ -5,9 +5,12 @@ import NavbarSimpleAuth from "@/components/Navbar/user/auth/NavbarSimpleAuth";
 import {Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger} from "@nextui-org/dropdown";
 import NavbarNextButton from "@/components/Navbar/user/auth/NavbarNextButton";
 import NavbarNextModal from "@/components/Navbar/user/auth/NavbarNextModal";
+import {useRouter} from "next/navigation";
+import {signOut} from "next-auth/react";
 
-const NavbarUser = async ({authentication, session, providers, styles}) => {
+const NavbarUser = ({authentication, session, providers, styles}) => {
 	// ToDo: Until not fixed in react-aria this dropdown wont work in server components
+	const router = useRouter();
 
 	if(session) {
 		return (
@@ -36,7 +39,13 @@ const NavbarUser = async ({authentication, session, providers, styles}) => {
 						{(item) => (
 							<DropdownItem
 								key={item.name}
-								onPress={() => router.push(item.pathname)}
+								onPress={() => {
+									item.pathname === "/api/auth/signout" ?
+										signOut()
+										:
+										router.push(item.pathname)
+								}}
+								closeOnSelect={item.pathname !== "/api/auth/signout"}
 								description={item.description}
 								startContent={item.icon ? item.icon : null}
 							>
