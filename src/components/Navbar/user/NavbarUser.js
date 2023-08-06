@@ -47,7 +47,7 @@ const NavbarUser = ({authentication, session, providers, styles}) => {
 								}}
 								closeOnSelect={item.pathname !== "/api/auth/signout"}
 								description={item.description}
-								startContent={item.icon ? item.icon : null}
+								startContent={item.icon}
 							>
 								{item.name}
 							</DropdownItem>
