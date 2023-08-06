@@ -36,7 +36,7 @@ const NavbarUser = async ({authentication, session, providers, styles}) => {
 						{(item) => (
 							<DropdownItem
 								key={item.name}
-								onClick={() => router.push(item.pathname)}
+								onPress={() => router.push(item.pathname)}
 								description={item.description}
 								startContent={item.icon ? item.icon : null}
 							>
