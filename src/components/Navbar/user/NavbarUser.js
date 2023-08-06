@@ -1,16 +1,12 @@
-"use client";
-
 import {Avatar} from "@nextui-org/avatar";
 import NavbarSimpleAuth from "@/components/Navbar/user/auth/NavbarSimpleAuth";
 import {Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger} from "@nextui-org/dropdown";
 import NavbarNextButton from "@/components/Navbar/user/auth/NavbarNextButton";
 import NavbarNextModal from "@/components/Navbar/user/auth/NavbarNextModal";
-import {useRouter} from "next/navigation";
-import {signOut} from "next-auth/react";
+import NavbarDropSection from "@/components/Navbar/user/NavbarDropSection";
 
 const NavbarUser = ({authentication, session, providers, styles}) => {
 	// ToDo: Until not fixed in react-aria this dropdown wont work in server components
-	const router = useRouter();
 
 	if(session) {
 		return (
@@ -35,24 +31,7 @@ const NavbarUser = ({authentication, session, providers, styles}) => {
 							</svg>
 						} isReadOnly title={session.user.name} description={session.user.email}/>
 					</DropdownSection>
-					<DropdownSection title={"Actions"} items={authentication.userRoutes}>
-						{(item) => (
-							<DropdownItem
-								key={item.name}
-								onPress={() => {
-									item.pathname === "/api/auth/signout" ?
-										signOut()
-										:
-										router.push(item.pathname)
-								}}
-								closeOnSelect={item.pathname !== "/api/auth/signout"}
-								description={item.description}
-								startContent={item.icon}
-							>
-								{item.name}
-							</DropdownItem>
-						)}
-					</DropdownSection>
+					<NavbarDropSection userRoutes={authentication.userRoutes}/>
 				</DropdownMenu>
 			</Dropdown>
 		);
