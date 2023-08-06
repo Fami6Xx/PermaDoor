@@ -23,7 +23,7 @@ export const authOptions = {
 					id: profile.id,
 					discordId: profile.id,
 					name: profile.username,
-					global_name: profile.global_name,
+					global_name: profile.global_name ? profile.global_name : profile.username,
 					two_factor_enabled: profile.mfa_enabled,
 					email: profile.email,
 					emailVerified: profile.verified,
