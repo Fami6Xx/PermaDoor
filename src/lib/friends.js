@@ -1,8 +1,6 @@
-"use server";
 import prisma from './prisma';
 
 export async function getUserFriendsInfoById(userId) {
-	"use server";
 	const user = await prisma.user.findUnique({
 		where: {id: userId},
 		select: {
@@ -49,7 +47,6 @@ export async function getUserFriendsInfoById(userId) {
 }
 
 export async function findUsers(query, currentUserId) {
-	"use server";
 	const users = await prisma.user.findMany({
 		where: {
 			OR: [
