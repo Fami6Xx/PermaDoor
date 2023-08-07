@@ -5,7 +5,6 @@ import Image from "next/image";
 import NavbarBody from "@/components/Navbar/NavbarBody";
 import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
-import {getProviders} from "next-auth/react";
 
 const PermaNav = async () => {
 	const siteInfo = {
