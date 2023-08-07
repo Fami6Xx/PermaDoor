@@ -51,21 +51,15 @@ const PermaNav = async () => {
 				pathname: "/"
 			},
 			{
-				name: "Features",
-				pathname: "/features"
+				name: "Friends",
+				pathname: "/friends",
+				protected: true
 			},
 			{
-				name: "Customers",
-				pathname: "/customers",
+				name: "Chats",
+				pathname: "/chats",
+				protected: true
 			},
-			{
-				name: "Integrations",
-				pathname: "/integrations"
-			},
-			{
-				name: "FAQ",
-				pathname: "/faq"
-			}
 		],
 	};
 
@@ -78,7 +72,7 @@ const PermaNav = async () => {
 				<p className="font-bold text-inherit">{siteInfo.name}</p>
 			</NavbarBrand>
 			<NavbarContent justify="center" className="hidden sm:flex gap-4">
-				<NavbarContentGenerator routes={siteInfo.routes}/>
+				<NavbarContentGenerator routes={siteInfo.routes} isLoggedIn={!!session}/>
 			</NavbarContent>
 			<NavbarContent justify="end">
 				{siteInfo.authentication.enabled ?

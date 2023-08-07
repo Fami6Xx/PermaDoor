@@ -16,6 +16,10 @@ const NavbarBody = ({routes, children, userRoutes}) => {
 		return pathname === desiredPath;
 	}
 
+	const shouldDisplay = (route) => {
+		return route.protected && userRoutes || !route.protected;
+	}
+
 	return (
 		<Navbar onMenuOpenChange={setIsMenuOpen} isBordered isMenuOpen={isMenuOpen}>
 			<NavbarMenuToggle
@@ -26,16 +30,17 @@ const NavbarBody = ({routes, children, userRoutes}) => {
 			<NavbarMenu>
 				{
 					routes.map((item, index) => (
-						<NavbarMenuItem key={`${item.name}-${index}`}>
-							<Link
-								color={checkRoute(item.pathname) ? "primary" : "foreground"}
-								className="w-full"
-								href={item.pathname}
-								size="lg"
-							>
-								{item.name}
-							</Link>
-						</NavbarMenuItem>
+						shouldDisplay(item) &&
+							<NavbarMenuItem key={`${item.name}-${index}`}>
+								<Link
+									color={checkRoute(item.pathname) ? "primary" : "foreground"}
+									className="w-full"
+									href={item.pathname}
+									size="lg"
+								>
+									{item.name}
+								</Link>
+							</NavbarMenuItem>
 					))
 				}
 				{
