@@ -56,6 +56,11 @@ const PermaNav = async () => {
 				protected: true
 			},
 			{
+				name: "Add Friend",
+				pathname: "/friends/add",
+				protected: true
+			},
+			{
 				name: "Chats",
 				pathname: "/chats",
 				protected: true
