@@ -39,7 +39,8 @@ export const authOptions = {
 	callbacks: {
 		async session({ session, token, user }) {
 			// Send properties to the client, like an access_token and user id from a provider.
-			session.user.id = user.discordId;
+			session.user.id = user.id;
+			session.user.discordId = user.discordId;
 			session.user.name = user.name;
 			session.user.displayName = user.global_name;
 			session.user.two_factor_enabled = user.two_factor_enabled;
