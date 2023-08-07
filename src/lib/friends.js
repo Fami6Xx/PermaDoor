@@ -1,4 +1,4 @@
-const prisma = require('../prisma');
+import prisma from './prisma';
 
 export async function getUserFriendsInfoById(userId) {
 	"use server";
