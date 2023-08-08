@@ -1,6 +1,8 @@
 import "./globals.css";
 import {Providers} from "@/app/providers";
 import PermaNav from "@/components/Navbar/PermaNav";
+import {getServerSession} from "next-auth";
+import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
 export const metadata = {
   title: 'PermaDoor',
@@ -21,11 +23,12 @@ export const metadata = {
   }
 }
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const session = await getServerSession(authOptions);
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <Providers>
+        <Providers session={session}>
           <PermaNav/>
           {children}
         </Providers>
