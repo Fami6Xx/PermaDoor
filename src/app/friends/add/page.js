@@ -2,7 +2,7 @@
 
 import SearchUser from "@/components/Friends/add/SearchUser";
 import {useSession} from "next-auth/react";
-import {useEffect, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {Card, CardBody, CardFooter} from "@nextui-org/card";
 import Image from 'next/image'
 import {Button} from "@nextui-org/button";
@@ -13,8 +13,11 @@ const Page = () => {
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
 
+	let searchValue = useRef("");
+
 	const search = (value) => {
 		setLoading(true);
+		searchValue.current = value;
 		fetch("/api/user/find?query=" + value + "&currentUserId=" + session.data.user.id)
 		.then(res => res.json())
 		.then(data => {
@@ -28,6 +31,31 @@ const Page = () => {
 			}
 			setUsers(data);
 		});
+	}
+
+	const addFriend = (userId) => {
+		fetch("/api/friends/add", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				userId: userId,
+				currentUserId: session.data.user.id
+			})
+		})
+		.then(res => res.json())
+		.then(data => {
+			if(data.error){
+				alert(data.error);
+				return;
+			}
+			alert("Friend request sent");
+			search(searchValue.current);
+		}).catch(err => {
+			console.log(err);
+			alert("An error occurred");
+		})
 	}
 
 	useEffect(() => {
@@ -58,7 +86,18 @@ const Page = () => {
 								</div>
 							</CardBody>
 							<CardFooter className="flex justify-end w-full pt-0">
-								<Button variant="bordered">Add</Button>
+								{!user.isFriend && !user.isPending &&
+									<Button variant="bordered" onPress={() => addFriend(user.id)}>Add</Button>
+								}
+								{user.isFriend &&
+									<Button variant="bordered" color="success" disabled>Friends</Button>
+								}
+								{user.isPending && user.sendFriendRequest &&
+									<Button variant="bordered" color="success" disabled>Request sent</Button>
+								}
+								{user.isPending && user.receivedFriendRequest &&
+									<Button variant="bordered" color="primary">Accept request</Button>
+								}
 							</CardFooter>
 						</Card>
 					))}
