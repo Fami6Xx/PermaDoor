@@ -147,3 +147,57 @@ export async function sendFriendRequest(senderId, targetId) {
 
 	return true;
 }
+
+export async function acceptFriendRequest(senderId, receiverId) {
+	const friendRequest = await prisma.friendRequest.findUnique({
+		where: {
+			senderId_receiverId: {
+				senderId: senderId,
+				receiverId: receiverId
+			}
+		}
+	});
+
+	if (!friendRequest) {
+		return false;
+	}
+
+	await prisma.transaction([
+		prisma.friendRequest.delete({
+			where: {
+				id: friendRequest.id
+			}
+		}),
+		prisma.friendship.create({
+			data: {
+				userId: senderId,
+				friendId: receiverId
+			}
+		}),
+	])
+
+	return true;
+}
+
+export async function declineFriendRequest(senderId, receiverId) {
+	const friendRequest = await prisma.friendRequest.findUnique({
+		where: {
+			senderId_receiverId: {
+				senderId: senderId,
+				receiverId: receiverId
+			}
+		}
+	});
+
+	if (!friendRequest) {
+		return false;
+	}
+
+	await prisma.friendRequest.delete({
+		where: {
+			id: friendRequest.id
+		}
+	})
+
+	return true;
+}
