@@ -5,18 +5,20 @@ import AddFriendButton from "@/components/Friends/AddFriendButton";
 const Page = () => {
 	return (
 		<>
-			<Card shadow="md" className="md:m-auto md:w-[80vw] mt-8 rounded-none md:rounded-lg md:mt-8 dark:bg-opacity-30 md:dark:bg-opacity-50 lg:h-[19vw]">
-				<CardHeader className="text-3xl font-bold ml-6 mt-3">Friends</CardHeader>
-				<CardBody>
+			<div className="md:m-auto mt-8 md:mt-8 md:w-[80vw] ml-4 flex flex-col gap-4">
+				<h1 className="text-3xl font-bold ml-6 mt-3">Friends</h1>
+				<div>
 					<CurrentFriends/>
-				</CardBody>
-				<CardHeader className="text-3xl font-bold ml-6 mt-3">Friend requests</CardHeader>
-				<CardBody>
-					<p>FR</p> {/* TODO */}
-				</CardBody>
-			</Card>
+				</div>
+				<div>
+					<h1 className="text-3xl font-bold ml-6 mt-3">Friend requests</h1>
+				</div>
+				<div>
+					<p>FR</p>
+				</div>
+			</div>
 
-			<AddFriendButton/>
+			<AddFriendButton/> {/* Add a tooltip */}
 		</>
 	);
 };
