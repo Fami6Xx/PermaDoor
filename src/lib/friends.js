@@ -73,7 +73,7 @@ export async function findUsers(query, currentUserId) {
 			id: true,
 			sentFriendRequests: {
 				where: {
-					senderId: currentUserId
+					receiverId: currentUserId
 				},
 				select: {
 					id: true
@@ -81,7 +81,7 @@ export async function findUsers(query, currentUserId) {
 			},
 			receivedFriendRequests: {
 				where: {
-					receiverId: currentUserId
+					senderId: currentUserId
 				},
 				select: {
 					id: true
@@ -118,7 +118,7 @@ export async function findUsers(query, currentUserId) {
 }
 
 export async function sendFriendRequest(senderId, targetId) {
-	const existingRequest = await prisma.friendRequest.findUnique({
+	const existingRequest = await prisma.friendRequest.findMany({
 		where: {
 			OR: [
 				{
@@ -133,7 +133,7 @@ export async function sendFriendRequest(senderId, targetId) {
 		}
 	});
 
-	if (existingRequest) {
+	if (existingRequest && existingRequest.length > 0) {
 		return false;
 	}
 
