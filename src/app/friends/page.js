@@ -1,5 +1,4 @@
 import CurrentFriends from "@/components/Friends/CurrentFriends";
-import {Card, CardBody, CardHeader} from "@nextui-org/card";
 import AddFriendButton from "@/components/Friends/AddFriendButton";
 
 const Page = () => {
@@ -18,7 +17,7 @@ const Page = () => {
 				</div>
 			</div>
 
-			<AddFriendButton/> {/* Add a tooltip */}
+			<AddFriendButton/> {/* ToDo: Add a tooltip */}
 		</>
 	);
 };
