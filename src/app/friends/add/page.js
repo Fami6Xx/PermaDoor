@@ -27,12 +27,8 @@ const Page = () => {
 				setUsers([]);
 				return;
 			}
-			if(error){
-				setError(null);
-			}
-			if(isProcessing){
-				setProcessing(false);
-			}
+			setError(null);
+			setProcessing(false);
 			setUsers(data);
 		}).catch(err => {
 			console.log(err);
@@ -62,11 +58,10 @@ const Page = () => {
 				setProcessing(false)
 				return;
 			}
-			alert("Friend request sent");
 			search(searchValue.current);
 		}).catch(err => {
 			console.log(err);
-			alert("An error occurred");
+			alert("An error occurred, try it again in few minutes or report it to administrator.");
 			setProcessing(false)
 		})
 	}
@@ -103,10 +98,10 @@ const Page = () => {
 									<Button variant="bordered" isLoading={isProcessing} onPress={() => addFriend(user.id)}>Add</Button>
 								}
 								{user.isFriend &&
-									<Button variant="bordered" color="success" disabled>Friends</Button>
+									<Button variant="bordered" color="success" isDisabled>Friends</Button>
 								}
 								{user.isPending && user.sendFriendRequest &&
-									<Button variant="bordered" color="success" disabled>Request sent</Button>
+									<Button variant="bordered" color="success" isDisabled>Request sent</Button>
 								}
 								{user.isPending && user.receivedFriendRequest &&
 									<Button variant="bordered" color="primary" isLoading={isProcessing}>Accept request</Button>
