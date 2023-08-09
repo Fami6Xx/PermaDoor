@@ -70,6 +70,23 @@ export async function findUsers(query, currentUserId) {
 		select: {
 			global_name: true,
 			image: true,
+			id: true,
+			sentFriendRequests: {
+				where: {
+					senderId: currentUserId
+				},
+				select: {
+					id: true
+				}
+			},
+			receivedFriendRequests: {
+				where: {
+					receiverId: currentUserId
+				},
+				select: {
+					id: true
+				}
+			},
 			friendships: {
 				where: {
 					friendId: currentUserId
@@ -92,6 +109,10 @@ export async function findUsers(query, currentUserId) {
 	return users.map(user => ({
 		global_name: user.global_name,
 		image: user.image,
-		isFriend: user.friendships.length > 0 || user.friendOf.length > 0
+		id: user.id,
+		isFriend: user.friendships.length > 0 || user.friendOf.length > 0,
+		sendFriendRequest: user.sentFriendRequests.length > 0,
+		receivedFriendRequest: user.receivedFriendRequests.length > 0,
+		isPending: user.sentFriendRequests.length > 0 || user.receivedFriendRequests.length > 0
 	}));
 }
