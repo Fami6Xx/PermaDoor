@@ -12,6 +12,7 @@ const Page = () => {
 	const [users, setUsers] = useState([]);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
+	const [isProcessing, setProcessing] = useState(false);
 
 	let searchValue = useRef("");
 
@@ -29,11 +30,21 @@ const Page = () => {
 			if(error){
 				setError(null);
 			}
+			if(isProcessing){
+				setProcessing(false);
+			}
 			setUsers(data);
+		}).catch(err => {
+			console.log(err);
+			setError("An error occurred");
+			setUsers([]);
+			setLoading(false);
+			setProcessing(false);
 		});
 	}
 
 	const addFriend = (userId) => {
+		setProcessing(true);
 		fetch("/api/friends/add", {
 			method: "POST",
 			headers: {
@@ -48,6 +59,7 @@ const Page = () => {
 		.then(data => {
 			if(data.error){
 				alert(data.error);
+				setProcessing(false)
 				return;
 			}
 			alert("Friend request sent");
@@ -55,6 +67,7 @@ const Page = () => {
 		}).catch(err => {
 			console.log(err);
 			alert("An error occurred");
+			setProcessing(false)
 		})
 	}
 
@@ -87,7 +100,7 @@ const Page = () => {
 							</CardBody>
 							<CardFooter className="flex justify-end w-full pt-0">
 								{!user.isFriend && !user.isPending &&
-									<Button variant="bordered" onPress={() => addFriend(user.id)}>Add</Button>
+									<Button variant="bordered" isLoading={isProcessing} onPress={() => addFriend(user.id)}>Add</Button>
 								}
 								{user.isFriend &&
 									<Button variant="bordered" color="success" disabled>Friends</Button>
@@ -96,7 +109,7 @@ const Page = () => {
 									<Button variant="bordered" color="success" disabled>Request sent</Button>
 								}
 								{user.isPending && user.receivedFriendRequest &&
-									<Button variant="bordered" color="primary">Accept request</Button>
+									<Button variant="bordered" color="primary" isLoading={isProcessing}>Accept request</Button>
 								}
 							</CardFooter>
 						</Card>
