@@ -116,3 +116,34 @@ export async function findUsers(query, currentUserId) {
 		isPending: user.sentFriendRequests.length > 0 || user.receivedFriendRequests.length > 0
 	}));
 }
+
+export async function sendFriendRequest(senderId, targetId) {
+	const existingRequest = await prisma.friendRequest.findUnique({
+		where: {
+			OR: [
+				{
+					senderId: senderId,
+					receiverId: targetId
+				},
+				{
+					receiverId: senderId,
+					senderId: targetId
+				}
+				]
+		}
+	});
+
+	if (existingRequest) {
+		return false;
+	}
+
+	// Create the friend request
+	await prisma.friendRequest.create({
+		data: {
+			senderId: senderId,
+			receiverId: targetId
+		}
+	});
+
+	return true;
+}
