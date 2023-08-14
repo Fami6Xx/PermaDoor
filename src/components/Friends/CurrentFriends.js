@@ -8,8 +8,6 @@ const CurrentFriends = async () => {
 	const session = await getServerSession(authOptions);
 	const friends = session ? await getUserFriendsInfoById(session.user.id) : null;
 
-	console.log(friends);
-
 	if(friends && friends.length > 0) {
 		return (
 			<div className="ml-4" key="div-wrapper">
