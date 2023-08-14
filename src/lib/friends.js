@@ -111,8 +111,8 @@ export async function findUsers(query, currentUserId) {
 		image: user.image,
 		id: user.id,
 		isFriend: user.friendships.length > 0 || user.friendOf.length > 0,
-		sendFriendRequest: user.sentFriendRequests.length > 0,
-		receivedFriendRequest: user.receivedFriendRequests.length > 0,
+		sendFriendRequest: user.receivedFriendRequests.length > 0,
+		receivedFriendRequest: user.sentFriendRequests.length > 0, // This is because we are looping the users, so we need to check if the current user has received a friend request from the user that we are looping
 		isPending: user.sentFriendRequests.length > 0 || user.receivedFriendRequests.length > 0
 	}));
 }
@@ -160,19 +160,18 @@ export async function acceptFriendRequest(senderId, receiverId) {
 		return false;
 	}
 
-	await prisma.transaction([
-		prisma.friendRequest.delete({
-			where: {
-				id: friendRequest[0].id
-			}
-		}),
-		prisma.friendship.create({
-			data: {
-				userId: senderId,
-				friendId: receiverId
-			}
-		}),
-	])
+	await prisma.friendRequest.delete({
+		where: {
+			id: friendRequest[0].id
+		}
+	})
+
+	await	prisma.friendship.create({
+		data: {
+			userId: senderId,
+			friendId: receiverId
+		}
+	})
 
 	return true;
 }
