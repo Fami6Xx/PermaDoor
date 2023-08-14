@@ -13,7 +13,7 @@ export async function POST(request) {
 		return NextResponse.json({status: 401, error: "You are not authorized to do this"});
 	}
 
-	const result = await sendFriendRequest(userId, currentUserId);
+	const result = await sendFriendRequest(currentUserId, userId);
 
 	if(result){
 		return NextResponse.json({status: 200, message: "Friend request sent"});
