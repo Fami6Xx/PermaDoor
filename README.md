@@ -13,7 +13,7 @@ You need to open a command line and get yourself to the directory you cloned the
 ```bash
 npm i
 
-npm prisma migrate dev --name init
+npx prisma migrate dev --name init
 
 npm run dev
 ```
