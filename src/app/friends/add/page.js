@@ -66,6 +66,33 @@ const Page = () => {
 		})
 	}
 
+	const acceptFriend = (userId) => {
+		setProcessing(true);
+		fetch("/api/friends/accept", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				userId: userId,
+				currentUserId: session.data.user.id
+			})
+		})
+		.then(res => res.json())
+		.then(data => {
+			if(data.error){
+				alert(data.error);
+				setProcessing(false)
+				return;
+			}
+			search(searchValue.current);
+		}).catch(err => {
+			console.log(err);
+			alert("An error occurred, try it again in few minutes or report it to administrator.");
+			setProcessing(false)
+		})
+	}
+
 	useEffect(() => {
 		if(loading){
 			setLoading(false);
@@ -104,7 +131,7 @@ const Page = () => {
 									<Button variant="bordered" color="success" isDisabled>Request sent</Button>
 								}
 								{user.isPending && user.receivedFriendRequest &&
-									<Button variant="bordered" color="primary" isLoading={isProcessing}>Accept request</Button>
+									<Button variant="bordered" color="primary" isLoading={isProcessing} onPress={() => acceptFriend(user.id)}>Accept request</Button>
 								}
 							</CardFooter>
 						</Card>
