@@ -74,8 +74,8 @@ const Page = () => {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				userId: userId,
-				currentUserId: session.data.user.id
+				senderId: userId,
+				receiverId: session.data.user.id
 			})
 		})
 		.then(res => res.json())
