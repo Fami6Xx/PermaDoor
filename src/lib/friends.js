@@ -89,7 +89,14 @@ export async function findUsers(query, currentUserId) {
 			},
 			friendships: {
 				where: {
-					friendId: currentUserId
+					OR: [
+						{
+							userId: currentUserId,
+						},
+						{
+							friendId: currentUserId
+						}
+					],
 				},
 				select: {
 					id: true
@@ -97,7 +104,14 @@ export async function findUsers(query, currentUserId) {
 			},
 			friendOf: {
 				where: {
-					friendId: currentUserId
+					OR: [
+						{
+							userId: currentUserId,
+						},
+						{
+							friendId: currentUserId
+						}
+					],
 				},
 				select: {
 					id: true
@@ -134,6 +148,25 @@ export async function sendFriendRequest(senderId, targetId) {
 	});
 
 	if (existingRequest && existingRequest.length > 0) {
+		return false;
+	}
+
+	const existingFriendship = await prisma.friendship.findMany({
+		where: {
+			OR: [
+				{
+					userId: senderId,
+					friendId: targetId
+				},
+				{
+					userId: targetId,
+					friendId: senderId
+				}
+			]
+		}
+	});
+
+	if (existingFriendship && existingFriendship.length > 0) {
 		return false;
 	}
 
