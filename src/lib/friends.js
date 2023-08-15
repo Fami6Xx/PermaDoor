@@ -89,7 +89,14 @@ export async function findUsers(query, currentUserId) {
 			},
 			friendships: {
 				where: {
-					friendId: currentUserId
+					OR: [
+						{
+							userId: currentUserId,
+						},
+						{
+							friendId: currentUserId
+						}
+					],
 				},
 				select: {
 					id: true
@@ -97,7 +104,14 @@ export async function findUsers(query, currentUserId) {
 			},
 			friendOf: {
 				where: {
-					friendId: currentUserId
+					OR: [
+						{
+							userId: currentUserId,
+						},
+						{
+							friendId: currentUserId
+						}
+					],
 				},
 				select: {
 					id: true
