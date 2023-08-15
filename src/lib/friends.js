@@ -151,6 +151,25 @@ export async function sendFriendRequest(senderId, targetId) {
 		return false;
 	}
 
+	const existingFriendship = await prisma.friendship.findMany({
+		where: {
+			OR: [
+				{
+					userId: senderId,
+					friendId: targetId
+				},
+				{
+					userId: targetId,
+					friendId: senderId
+				}
+			]
+		}
+	});
+
+	if (existingFriendship && existingFriendship.length > 0) {
+		return false;
+	}
+
 	// Create the friend request
 	await prisma.friendRequest.create({
 		data: {
