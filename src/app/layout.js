@@ -6,7 +6,7 @@ import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 
 export const metadata = {
   title: 'PermaDoor',
-  description: 'Definitely not a Backdoor',
+  description: 'Testing app for my NextJS learning',
   metadataBase: "https://perma-door.vercel.app",
   openGraph: {
     title: "PermaDoor",
