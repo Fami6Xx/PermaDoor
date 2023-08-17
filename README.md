@@ -2,8 +2,6 @@
 
 Hello! If you're reading this then you must be special because this is only a testing repo for my learning of NextJS, NextAuth and NextUI v2.
 
-Currently (July 2023) the NextUI is in development so occasional ui bugs might happen!
-
 I used Postgres as my database and Vercel as my deploy site.
 
 ## First start
@@ -33,8 +31,8 @@ npm prisma migrate dev --name *NAME*
 ## Information and sources i used
 Prisma init: https://codevoweb.com/how-to-setup-prisma-orm-in-nextjs-13-app-directory/
 
-NextUI V2 documentation (As of July 2023): https://nextui-docs-v2.vercel.app
+NextUI V2
 
-NextJS version: 13.4.8 (App Router)
+NextJS version: Latest (13.4.16)
 
 NextAuth v4
