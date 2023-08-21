@@ -22,6 +22,7 @@
     "@nextui-org/navbar": "^2.0.0",
     "@nextui-org/progress": "^2.0.3",
     "@nextui-org/react": "^2.0.0",
+    "@nextui-org/scroll-shadow": "^2.1.2",
     "@nextui-org/spacer": "^2.0.0",
     "@nextui-org/tooltip": "^2.0.0",
     "@prisma/client": "^5.0.0",
