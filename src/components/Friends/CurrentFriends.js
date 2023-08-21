@@ -3,6 +3,7 @@ import {getUserFriendsInfoById} from "@/lib/friends";
 import {getServerSession} from "next-auth";
 import {Card, CardBody} from "@nextui-org/card";
 import FriendCard from "@/components/Friends/FriendCard";
+import Wrapper from "@/components/Friends/Wrapper";
 
 const CurrentFriends = async () => {
 	const session = await getServerSession(authOptions);
@@ -10,11 +11,17 @@ const CurrentFriends = async () => {
 
 	if(friends && friends.length > 0) {
 		return (
-			<div className="flex flex-row gap-4" key="div-wrapper">
-				{friends.map((friend) => (
-					<FriendCard friend={friend}/>
+			<Wrapper>
+				{friends.map((friend, index) => (
+					<FriendCard friend={friend} key={index}/>
 				))}
-			</div>
+				{friends.map((friend, index) => (
+					<FriendCard friend={friend} key={index}/>
+				))}
+				{friends.map((friend, index) => (
+					<FriendCard friend={friend} key={index}/>
+				))}
+			</Wrapper>
 		)
 	}else {
 		return (
