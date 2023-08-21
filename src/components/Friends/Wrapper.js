@@ -1,10 +1,10 @@
-"use client";
+import {ScrollShadow} from "@nextui-org/scroll-shadow";
 
 const Wrapper = ({children}) => {
 	return (
-		<div className="flex flex-row gap-4 w-[80%] md:w-[90%] max-w-[1080px] pb-4 overflow-auto" key="wrapper">
+		<ScrollShadow orientation="horizontal" hideScrollBar className="flex flex-row gap-4 max-w-[80%] md:max-w-[90%] h-full lg:max-w-[1080px]" key="wrapper">
 			{children}
-		</div>
+		</ScrollShadow>
 	);
 }
 
