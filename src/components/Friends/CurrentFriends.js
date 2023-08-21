@@ -1,9 +1,8 @@
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import {getUserFriendsInfoById} from "@/lib/friends";
 import {getServerSession} from "next-auth";
-import Image from "next/image";
 import {Card, CardBody} from "@nextui-org/card";
-import {timeAgo} from "@/lib/time";
+import FriendCard from "@/components/Friends/FriendCard";
 
 const CurrentFriends = async () => {
 	const session = await getServerSession(authOptions);
@@ -13,20 +12,7 @@ const CurrentFriends = async () => {
 		return (
 			<div className="flex flex-row gap-4" key="div-wrapper">
 				{friends.map((friend) => (
-					<Card shadow="sm" radius="md" isHoverable isPressable>
-						<CardBody className="flex flex-row gap-2">
-							<Image key={friend.id + "--image"} src={friend.image} alt={friend.global_name} width={64} height={64} className="rounded-full w-10 h-10"/>
-							<div className="flex flex-col w-40 h-10">
-								<div className="h-full text-lg font-semibold items-center flex overflow-hidden w-full">
-									<span className="w-full overflow-ellipsis whitespace-nowrap overflow-hidden">
-										{friend.global_name}
-									</span>
-								</div>
-								<span
-									className="text-xs dark:text-gray-400 light:text-gray-500">Added: {timeAgo(friend.friendshipCreatedAt)}</span>
-							</div>
-						</CardBody>
-					</Card>
+					<FriendCard friend={friend}/>
 				))}
 			</div>
 		)
