@@ -21,7 +21,7 @@ const FriendCard = ({friend}) => {
 									</span>
 						</div>
 						<span
-							className="text-xs dark:text-gray-400 light:text-gray-500">Added: {timeAgo(friend.friendshipCreatedAt)}</span>
+							className="text-xs dark:text-gray-400 light:text-gray-500 hidden sm:block">Added: {timeAgo(friend.friendshipCreatedAt)}</span>
 					</div>
 				</CardBody>
 			</Card>
@@ -31,14 +31,12 @@ const FriendCard = ({friend}) => {
 				onOpenChange={onOpenChange}
 				backdrop="opaque"
 				size="xs"
-				classNames={{
-					body: "bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black",
-				}}
+				className="bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black"
 			>
 				<ModalContent>
 					{(onClose) => (
 						<>
-							<ModalHeader className="flex flex-col gap-1">
+							<ModalHeader className="flex flex-row gap-4">
 								<Avatar
 									showFallback
 									isBordered
@@ -46,7 +44,7 @@ const FriendCard = ({friend}) => {
 									radius="sm"
 									aria-label="User menu"
 								/>
-								<div className="h-full text-lg font-semibold items-center flex overflow-hidden w-full">
+								<div className="h-10 text-lg font-semibold items-center flex overflow-hidden w-full">
 									<span className="w-full overflow-ellipsis whitespace-nowrap overflow-hidden">
 										{friend.global_name}
 									</span>
