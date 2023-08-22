@@ -3,7 +3,7 @@ import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import {NextResponse} from "next/server";
 import {acceptFriendRequest} from "@/lib/friends";
 
-export async function  POST(request){
+export async function POST(request){
 	const {senderId, receiverId} = await request.json();
 	const session = await getServerSession(authOptions);
 	if(!session){
