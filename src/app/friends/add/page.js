@@ -6,6 +6,7 @@ import {useEffect, useRef, useState} from "react";
 import {Card, CardBody, CardFooter} from "@nextui-org/card";
 import Image from 'next/image'
 import {Button} from "@nextui-org/button";
+import AddFriendButton from "@/components/Friends/buttons/AddFriendButton";
 
 const Page = () => {
 	const session = useSession();
@@ -37,33 +38,6 @@ const Page = () => {
 			setLoading(false);
 			setProcessing(false);
 		});
-	}
-
-	const addFriend = (userId) => {
-		setProcessing(true);
-		fetch("/api/friends/add", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				userId: userId,
-				currentUserId: session.data.user.id
-			})
-		})
-		.then(res => res.json())
-		.then(data => {
-			if(data.error){
-				alert(data.error);
-				setProcessing(false)
-				return;
-			}
-			search(searchValue.current);
-		}).catch(err => {
-			console.log(err);
-			alert("An error occurred, try it again in few minutes or report it to administrator.");
-			setProcessing(false)
-		})
 	}
 
 	const acceptFriend = (userId) => {
@@ -122,7 +96,7 @@ const Page = () => {
 							</CardBody>
 							<CardFooter className="flex justify-end w-full pt-0">
 								{!user.isFriend && !user.isPending &&
-									<Button variant="bordered" isLoading={isProcessing} onPress={() => addFriend(user.id)}>Add</Button>
+									<AddFriendButton session={session} user={user} succesfull={() => search(searchValue.current)}/>
 								}
 								{user.isFriend &&
 									<Button variant="bordered" color="success" isDisabled>Friends</Button>
