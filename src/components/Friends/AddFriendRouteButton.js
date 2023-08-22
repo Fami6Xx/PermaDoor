@@ -2,7 +2,7 @@
 import {Button} from "@nextui-org/button";
 import {useRouter} from "next/navigation";
 
-const AddFriendButton = () => {
+const AddFriendRouteButton = () => {
 	const router = useRouter();
 
 	return (
@@ -14,4 +14,4 @@ const AddFriendButton = () => {
 	);
 };
 
-export default AddFriendButton;
+export default AddFriendRouteButton;

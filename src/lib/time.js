@@ -6,7 +6,7 @@ export function timeAgo(timestamp) {
 	const MINUTE = 60;
 	const HOUR = 60 * MINUTE;
 	const DAY = 24 * HOUR;
-	const YEAR = 365.25 * DAY;
+	const YEAR = 365.25 * DAY; // Taking leap years into account
 
 	let remainingSeconds = secondsDifference;
 

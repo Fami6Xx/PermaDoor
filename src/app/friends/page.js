@@ -1,5 +1,5 @@
 import CurrentFriends from "@/components/Friends/CurrentFriends";
-import AddFriendButton from "@/components/Friends/AddFriendButton";
+import AddFriendRouteButton from "@/components/Friends/AddFriendRouteButton";
 
 const Page = () => {
 	return (
@@ -17,7 +17,7 @@ const Page = () => {
 				</div>
 			</div>
 
-			<AddFriendButton/> {/* ToDo: Add a tooltip */}
+			<AddFriendRouteButton/> {/* ToDo: Add a tooltip */}
 		</>
 	);
 };
