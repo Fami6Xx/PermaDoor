@@ -29,7 +29,7 @@ const CurrentFriends = async () => {
 				<CardBody className="flex flex-row gap-2">
 					<div className="flex flex-col">
 						<span className="text-sm font-semibold">Friendships</span>
-						<span className="text-xs dark:text-gray-400 light:text-gray-500">We couldnt find any friends</span>
+						<span className="text-xs dark:text-gray-400 light:text-gray-500">We couldn't find any friends</span>
 					</div>
 				</CardBody>
 			</Card>
