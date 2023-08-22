@@ -14,7 +14,6 @@ const Page = () => {
 	const [users, setUsers] = useState([]);
 	const [error, setError] = useState(null);
 	const [loading, setLoading] = useState(false);
-	const [isProcessing, setProcessing] = useState(false);
 
 	let searchValue = useRef("");
 
@@ -30,14 +29,12 @@ const Page = () => {
 				return;
 			}
 			setError(null);
-			setProcessing(false);
 			setUsers(data);
 		}).catch(err => {
 			console.log(err);
 			setError("An error occurred");
 			setUsers([]);
 			setLoading(false);
-			setProcessing(false);
 		});
 	}
 
