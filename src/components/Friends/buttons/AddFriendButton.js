@@ -22,17 +22,18 @@ const AddFriendRouteButton = ({session, user, succesfull}) => {
 		.then(data => {
 			if(data.error){
 				alert(data.error);
-				setProcessing(false)
+				setProcessing(false);
 				return;
 			}
+			setProcessing(false);
 			if(succesfull){
 				succesfull();
 			}
 		}).catch(err => {
 			console.log(err);
 			alert("An error occurred, try it again in few minutes or report it to administrator.");
-			setProcessing(false)
-		})
+			setProcessing(false);
+		});
 	}
 
 	return (
