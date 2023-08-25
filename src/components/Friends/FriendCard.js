@@ -42,9 +42,10 @@ const FriendCard = ({friend}) => {
 									isBordered
 									src={friend.image}
 									radius="sm"
-									aria-label="User menu"
+									aria-label="User in modal"
+									className="flex-shrink-0"
 								/>
-								<div className="h-10 text-lg font-semibold items-center flex overflow-hidden w-full">
+								<div className="h-10 text-lg font-semibold items-center flex overflow-hidden w-fit">
 									<span className="w-full overflow-ellipsis whitespace-nowrap overflow-hidden">
 										{friend.global_name}
 									</span>
