@@ -54,7 +54,7 @@ const Page = () => {
 			<div className="md:m-auto md:w-[80vw] mt-8 rounded-none md:rounded-lg md:mt-8 dark:bg-opacity-30 md:dark:bg-opacity-50 lg:h-[34vw] min-h-[500px] max-h-[1000px] bg-content1 box-border shadow-small overflow-hidden">
 				<div className="m-7 w-[calc(100%-56px)] min-h-[calc(500px-56px)] max-h-[calc(1000px-56px)] h-[calc(100%-56px)] overflow-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 justify-center">
 					{!loading && users.map((user, index) => (
-						<Card key={`${user.global_name}-${index}`} className="max-w-[16rem] min-w-[9rem] md:min-w-[10rem] max-h-32 min-h-[8rem] flex-initial">
+						<Card key={`${user.global_name}-${index}`} className="max-w-[16rem] min-w-[9rem] md:min-w-[10rem] max-h-32 min-h-[8rem] flex-initial dark:friend-border-dark friend-border-light">
 							<CardBody className="pb-0">
 								<div className="flex flex-row gap-2 h-12 items-center">
 									<Image src={user.image} alt={user.global_name} width={32} height={32} className="rounded-lg w-10 h-10"/>
