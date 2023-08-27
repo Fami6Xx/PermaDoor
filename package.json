@@ -25,7 +25,6 @@
     "@nextui-org/scroll-shadow": "^2.1.2",
     "@nextui-org/select": "^2.1.5",
     "@nextui-org/spacer": "^2.0.0",
-    "@nextui-org/switch": "^2.0.15",
     "@nextui-org/tooltip": "^2.0.0",
     "@prisma/client": "^5.0.0",
     "autoprefixer": "10.4.14",
