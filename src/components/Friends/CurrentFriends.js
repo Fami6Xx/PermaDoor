@@ -15,12 +15,6 @@ const CurrentFriends = async () => {
 				{friends.map((friend, index) => (
 					<FriendCard friend={friend} key={index}/>
 				))}
-				{friends.map((friend, index) => (
-					<FriendCard friend={friend} key={index}/>
-				))}
-				{friends.map((friend, index) => (
-					<FriendCard friend={friend} key={index}/>
-				))}
 			</Wrapper>
 		)
 	}else {
