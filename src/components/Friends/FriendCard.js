@@ -11,7 +11,7 @@ const FriendCard = ({friend}) => {
 	const {isOpen, onOpen, onOpenChange} = useDisclosure();
 	return (
 		<>
-			<Card shadow="sm" radius="md" isHoverable isPressable onPress={onOpen} className="shrink-0">
+			<Card shadow="sm" radius="md" isHoverable isPressable onPress={onOpen} className="shrink-0 dark:bg-none bg-gradient-to-br from-white to-default-200">
 				<CardBody className="flex flex-row gap-2">
 					<Image key={friend.id + "--image"} src={friend.image} alt={friend.global_name} width={64} height={64} className="rounded-full w-10 h-10"/>
 					<div className="flex flex-col w-20 sm:w-40 h-10">
