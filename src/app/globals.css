@@ -4,10 +4,10 @@
 
 @layer utilities {
     .friend-border-dark {
-        border: 2px outset theme("colors.lime.700");
+        border: 2px outset hsl(var(--nextui-success));
     }
     .friend-border-light {
-        border: 2px solid theme("colors.lime.300");
+        border: 2px solid hsl(var(--nextui-success));
         border-bottom: 0;
         border-right: 0;
     }
