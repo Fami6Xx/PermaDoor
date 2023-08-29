@@ -8,7 +8,7 @@ const AcceptFriendButton = ({session, user, succesfull}) => {
 
 	const acceptFriend = (userId) => {
 		setProcessing(true);
-		fetch("/api/friends/accept", {
+		fetch("/api/friends/request/accept", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
