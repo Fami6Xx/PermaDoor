@@ -181,6 +181,35 @@ export async function sendFriendRequest(senderId, targetId) {
 	return true;
 }
 
+export async function removeFriend(userId, friendId) {
+	const friendship = await prisma.friendship.findMany({
+		where: {
+			OR: [
+				{
+					userId: userId,
+					friendId: friendId
+				},
+				{
+					userId: friendId,
+					friendId: userId
+				}
+			]
+		}
+	});
+
+	if (!friendship || friendship.length === 0) {
+		return false;
+	}
+
+	await prisma.friendship.delete({
+		where: {
+			id: friendship[0].id
+		}
+	});
+
+	return true;
+}
+
 export async function acceptFriendRequest(senderId, receiverId) {
 	const friendRequest = await prisma.friendRequest.findMany({
 		where: {
