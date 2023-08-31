@@ -5,6 +5,7 @@ import {useState} from "react";
 
 const RemoveFriendButton = ({session, user, succesfull}) => {
 	const [isProcessing, setProcessing] = useState(false);
+	console.log(user);
 
 	const removeFriend = (userId) => {
 		setProcessing(true);

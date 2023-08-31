@@ -1,5 +1,6 @@
 import CurrentFriends from "@/components/Friends/CurrentFriends";
 import AddFriendRouteButton from "@/components/Friends/buttons/AddFriendRouteButton";
+import CurrentRequests from "@/components/FriendRequests/CurrentRequests";
 
 const Page = () => {
 	return (
@@ -13,7 +14,7 @@ const Page = () => {
 					<h1 className="text-3xl font-bold ml-6 mt-3">Friend requests</h1>
 				</div>
 				<div>
-					<p>FR</p>
+					<CurrentRequests/>
 				</div>
 			</div>
 
