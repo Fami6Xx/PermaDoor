@@ -8,6 +8,7 @@ const RemoveFriendButton = ({session, user, succesfull}) => {
 
 	const removeFriend = (userId) => {
 		setProcessing(true);
+		console.log(userId);
 		fetch("/api/friends/remove", {
 			method: "POST",
 			headers: {
