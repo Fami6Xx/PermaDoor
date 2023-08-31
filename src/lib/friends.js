@@ -46,6 +46,29 @@ export async function getUserFriendsInfoById(userId) {
 	return [...addedFriends, ...addedByFriends];
 }
 
+export async function getFriendRequests(userId) {
+	const friendRequests = await prisma.friendRequest.findMany({
+		where: {
+			receiverId: userId
+		},
+		select: {
+			id: true,
+			sender: {
+				select: {
+					global_name: true,
+					image: true,
+					id: true
+				}
+			}
+		}
+	});
+
+	return friendRequests.map(f => ({
+		...f.sender,
+		friendRequestId: f.id
+	}));
+}
+
 export async function findUsers(query, currentUserId) {
 	const users = await prisma.user.findMany({
 		where: {
