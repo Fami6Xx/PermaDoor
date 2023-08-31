@@ -57,9 +57,6 @@ const FriendCard = ({friend}) => {
 									</span>
 								</div>
 							</ModalHeader>
-							<ModalBody>
-								Information
-							</ModalBody>
 							<ModalFooter>
 								<div className="flex flex-row content-around">
 									<RemoveFriendButton session={session} user={friend} succesfull={() => {
