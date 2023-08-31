@@ -9,7 +9,8 @@ export async function getUserFriendsInfoById(userId) {
 					friend: {
 						select: {
 							global_name: true,
-							image: true
+							image: true,
+							id: true,
 						}
 					},
 					createdAt: true
@@ -20,7 +21,8 @@ export async function getUserFriendsInfoById(userId) {
 					user: {
 						select: {
 							global_name: true,
-							image: true
+							image: true,
+							id: true,
 						}
 					},
 					createdAt: true
