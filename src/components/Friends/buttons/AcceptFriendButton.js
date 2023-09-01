@@ -3,7 +3,7 @@
 import {Button} from "@nextui-org/button";
 import {useState} from "react";
 
-const AcceptFriendButton = ({session, user, succesfull}) => {
+const AcceptFriendButton = ({session, user, succesfull, type}) => {
 	const [isProcessing, setProcessing] = useState(false);
 
 	const acceptFriend = (userId) => {
@@ -36,9 +36,19 @@ const AcceptFriendButton = ({session, user, succesfull}) => {
 		});
 	}
 
-	return (
-		<Button variant="bordered" color="primary" isLoading={isProcessing} onPress={() => acceptFriend(user.id)}>Accept request</Button>
-	)
+	if(!type){
+		return (
+			<Button variant="bordered" color="primary" isLoading={isProcessing} onPress={() => acceptFriend(user.id)}>Accept request</Button>
+		);
+	}else{
+		return (
+			<Button variant="bordered" color="success" isIconOnly isLoading={isProcessing} onPress={() => acceptFriend(user.id)}>
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" height="1.3em" width="1.3em" className="text-xl text-default-500 pointer-events-none flex-shrink-0">
+					<path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+				</svg>
+			</Button>
+		);
+	}
 }
 
 export default AcceptFriendButton;
