@@ -37,7 +37,7 @@ const FriendCard = ({friend}) => {
 				onOpenChange={onOpenChange}
 				backdrop="opaque"
 				size="xs"
-				className="bg-gradient-to-br from-white to-default-200 dark:from-default-50 dark:to-black border border-default-200"
+				className="bg-gradient-to-br from-white to-default-300 dark:from-default-50 dark:to-black border border-default-200"
 			>
 				<ModalContent>
 					{(onClose) => (
