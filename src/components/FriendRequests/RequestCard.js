@@ -6,7 +6,7 @@ import Image from "next/image";
 const RequestCard = async ({request, session}) => {
 	return (
 		<>
-			<Card className="w-[150px]">
+			<Card className="w-[150px] flex-shrink-0">
 				<CardHeader className="w-full flex justify-center">
 					<Image src={request.image} alt={request.global_name} width={64} height={64} className="rounded-full w-16 h-16"/>
 				</CardHeader>
