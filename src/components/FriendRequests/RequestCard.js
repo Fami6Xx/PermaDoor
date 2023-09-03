@@ -14,7 +14,7 @@ const RequestCard = async ({request, session}) => {
 					<span className="w-full text-center text-default-500 text-xl font-bold overflow-ellipsis whitespace-nowrap overflow-hidden">{request.global_name}</span>
 				</CardBody>
 				<CardFooter className="w-full flex flex-row justify-around">
-					<DeclineFriendButton friend={request} session={{data: session}} type="icon" refresh/>
+					<DeclineFriendButton user={request} session={{data: session}} type="icon" refresh/>
 					<AcceptFriendButton user={request} session={{data: session}} type="icon" refresh/>
 				</CardFooter>
 			</Card>
