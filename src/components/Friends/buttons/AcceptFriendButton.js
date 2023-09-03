@@ -6,6 +6,7 @@ import {useRouter} from "next/navigation";
 
 const AcceptFriendButton = ({session, user, succesfull, type, refresh}) => {
 	const [isProcessing, setProcessing] = useState(false);
+	const router = useRouter();
 
 	const acceptFriend = () => {
 		setProcessing(true);
@@ -31,7 +32,7 @@ const AcceptFriendButton = ({session, user, succesfull, type, refresh}) => {
 				succesfull();
 			}
 			if(refresh){
-				useRouter().refresh();
+				router.refresh();
 			}
 		}).catch(err => {
 			console.log(err);
