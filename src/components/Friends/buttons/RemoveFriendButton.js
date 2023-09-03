@@ -40,7 +40,7 @@ const RemoveFriendButton = ({session, user, succesfull}) => {
 
 	return (
 		<>
-			<Button variant="bordered" color="danger" isLoading={isProcessing} onPress={() => removeFriend(user.id)}>
+			<Button variant="bordered" color="danger" isLoading={isProcessing} onPress={() => removeFriend(user.id)} className="text-default-foreground">
 				Remove
 			</Button>
 		</>
