@@ -6,6 +6,7 @@ import {useRouter} from "next/navigation";
 
 const DeclineFriendButton = ({session, user, succesfull, type, refresh}) => {
 	const [isProcessing, setIsProcessing] = useState(false);
+	const router = useRouter();
 
 	const declineFriend = () => {
 		setIsProcessing(true);
@@ -34,7 +35,7 @@ const DeclineFriendButton = ({session, user, succesfull, type, refresh}) => {
 			}
 
 			if(refresh){
-				useRouter().refresh();
+				router.refresh();
 			}
 		}).catch(err => {
 			console.log(err);
