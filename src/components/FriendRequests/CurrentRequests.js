@@ -6,9 +6,8 @@ import RequestCard from "@/components/FriendRequests/RequestCard";
 
 const CurrentRequests = async () => {
 	const session = await getServerSession(authOptions);
-	console.log(session);
 	const friendRequests = session ? await getFriendRequests(session.user.id) : null;
-	console.log(friendRequests);
+
 	if(friendRequests && friendRequests.length > 0) {
 		return (
 			<>
