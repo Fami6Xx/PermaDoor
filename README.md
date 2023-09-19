@@ -1,5 +1,7 @@
 # PermaDoor
 
+This project is currently not functional because another project of mine is using the database.
+
 Hello! This is only a testing repo for my learning of NextJS, NextAuth and NextUI v2.
 
 I used Postgres as my database and Vercel as my deploy site.
