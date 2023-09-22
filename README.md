@@ -1,6 +1,8 @@
 # PermaDoor
 
-Hello! If you're reading this then you must be special because this is only a testing repo for my learning of NextJS, NextAuth and NextUI v2.
+This project is currently not functional because another project of mine is using the database.
+
+Hello! This is only a testing repo for my learning of NextJS, NextAuth and NextUI v2.
 
 I used Postgres as my database and Vercel as my deploy site.
 
@@ -33,6 +35,6 @@ Prisma init: https://codevoweb.com/how-to-setup-prisma-orm-in-nextjs-13-app-dire
 
 NextUI V2
 
-NextJS version: Latest (13.4.16)
+NextJS version: Latest
 
 NextAuth v4
