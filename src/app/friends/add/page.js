@@ -52,7 +52,7 @@ const Page = () => {
 			</div>
 
 			<div className="md:m-auto md:w-[80vw] mt-8 rounded-none md:rounded-lg md:mt-8 dark:bg-opacity-30 md:dark:bg-opacity-50 lg:h-[34vw] min-h-[500px] max-h-[1000px] bg-content1 box-border shadow-small overflow-hidden">
-				<div className="m-2 w-[calc(100%-16px)] min-h-[calc(500px-16px)] max-h-[calc(1000px-16px)] h-[calc(100%-16px)] md:m-7 md:w-[calc(100%-56px)] md:min-h-[calc(500px-56px)] md:max-h-[calc(1000px-56px)] md:h-[calc(100%-56px)] overflow-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 justify-center">
+				<div className="w-[calc(100%-16px-16px)] p-4 min-h-[calc(500px-16px-16px)] max-h-[calc(1000px-16px-16px)] h-[calc(100%-16px-16px)] md:p-7 md:w-[calc(100%-56px)] md:min-h-[calc(500px-56px)] md:max-h-[calc(1000px-56px)] md:h-[calc(100%-56px)] overflow-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-6 justify-center">
 					{!loading && users.map((user, index) => (
 						<Card key={`${user.global_name}-${index}`} className={`max-w-[16rem] min-w-[9rem] md:min-w-[10rem] max-h-32 min-h-[8rem] flex-initial ${user.isFriend && "dark:friend-border-dark friend-border-light"} dark:bg-none bg-gradient-to-br from-white to-default-100`}>
 							<CardBody className="pb-0">
