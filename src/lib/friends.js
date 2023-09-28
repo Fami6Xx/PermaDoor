@@ -95,64 +95,65 @@ export async function findUsers(query, currentUserId) {
 		select: {
 			global_name: true,
 			image: true,
-			id: true,
-			sentFriendRequests: {
-				where: {
-					receiverId: currentUserId
-				},
-				select: {
-					id: true
-				}
-			},
-			receivedFriendRequests: {
-				where: {
-					senderId: currentUserId
-				},
-				select: {
-					id: true
-				}
-			},
-			friendships: {
-				where: {
-					OR: [
-						{
-							userId: currentUserId,
-						},
-						{
-							friendId: currentUserId
-						}
-					],
-				},
-				select: {
-					id: true
-				}
-			},
-			friendOf: {
-				where: {
-					OR: [
-						{
-							userId: currentUserId,
-						},
-						{
-							friendId: currentUserId
-						}
-					],
-				},
-				select: {
-					id: true
-				}
-			}
+			id: true
 		}
 	});
 
-	return users.map(user => ({
-		global_name: user.global_name,
-		image: user.image,
-		id: user.id,
-		isFriend: user.friendships.length > 0 || user.friendOf.length > 0,
-		sendFriendRequest: user.receivedFriendRequests.length > 0,
-		receivedFriendRequest: user.sentFriendRequests.length > 0, // This is because we are looping the users, so we need to check if the current user has received a friend request from the user that we are looping
-		isPending: user.sentFriendRequests.length > 0 || user.receivedFriendRequests.length > 0
+	const friendData = await Promise.all(users.map(async user => {
+		const sentFriendRequests = await prisma.friendRequest.findMany({
+			where: {
+				senderId: user.id,
+				receiverId: currentUserId
+			},
+			select: {
+				id: true
+			}
+		});
+
+		const receivedFriendRequests = await prisma.friendRequest.findMany({
+			where: {
+				senderId: currentUserId,
+				receiverId: user.id
+			},
+			select: {
+				id: true
+			}
+		});
+
+		const friendships = await prisma.friendship.findMany({
+			where: {
+				OR: [
+					{
+						userId: user.id,
+						friendId: currentUserId
+					},
+					{
+						userId: currentUserId,
+						friendId: user.id
+					}
+				]
+			},
+			select: {
+				id: true
+			}
+		});
+
+		return {
+			user,
+			sentFriendRequests,
+			receivedFriendRequests,
+			friendships
+		};
+	}));
+
+	return friendData.map(data => ({
+		global_name: data.user.global_name,
+		image: data.user.image,
+		id: data.user.id,
+		isFriend: data.friendships.length > 0,
+		sendFriendRequest: data.receivedFriendRequests.length > 0,
+		receivedFriendRequest: data.sentFriendRequests.length > 0,
+		isPending: data.sentFriendRequests.length > 0 || data.receivedFriendRequests.length > 0
 	}));
 }
 
