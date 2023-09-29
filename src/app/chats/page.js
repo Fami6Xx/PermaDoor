@@ -10,6 +10,8 @@ const Page = async () => {
 	const conversations = await getAllConversations(session.user.id);
 	return (
 		<>
+			<h1 className="text-2xl font-bold">Chats</h1>
+			<pre>{JSON.stringify(conversations, null, 1)}</pre>
 
 			<CreateConversationButton users={friends}/>
 		</>
