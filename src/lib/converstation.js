@@ -38,6 +38,11 @@ export const getAllConversations = async (userId) => {
  * @param name {string|undefined} - Name of the conversation (optional)
  */
 export const createConversation = async (userId, users, name) => {
+	users.push(userId);
+
+	if(!name || name.length === 0 || name.trim().length === 0) name = "A very secret conversation";
+	if(name.length > 100) name = name.substring(0, 100);
+
 	return prisma.conversation.create({
 		data: {
 			name: name,
