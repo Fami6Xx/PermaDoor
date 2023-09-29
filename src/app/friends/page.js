@@ -1,5 +1,4 @@
 import CurrentFriends from "@/components/Friends/CurrentFriends";
-import AddFriendRouteButton from "@/components/Friends/buttons/AddFriendRouteButton";
 import CurrentRequests from "@/components/FriendRequests/CurrentRequests";
 
 const Page = () => {
