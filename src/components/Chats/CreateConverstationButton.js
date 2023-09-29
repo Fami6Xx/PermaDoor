@@ -1,7 +1,6 @@
 "use client";
+
 import {Button} from "@nextui-org/button";
-import {useRouter} from "next/navigation";
-import {Tooltip} from "@nextui-org/tooltip";
 import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/popover";
 import CreateConversationForm from "@/components/Chats/Form/CreateConversationForm";
 
