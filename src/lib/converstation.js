@@ -31,3 +31,19 @@ export const getAllConversations = async (userId) => {
 
 	return conversations;
 }
+
+/**
+ * @param userId {string} - ID of the user
+ * @param users {Array<string>} - Array of selected users to have a conversation with
+ * @param name {string|undefined} - Name of the conversation (optional)
+ */
+export const createConversation = async (userId, users, name) => {
+	return prisma.conversation.create({
+		data: {
+			name: name,
+			users: {
+				connect: users.map((user) => ({id: user}))
+			}
+		}
+	});
+}
