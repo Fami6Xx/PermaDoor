@@ -17,8 +17,6 @@ const Page = () => {
 					<CurrentRequests/>
 				</div>
 			</div>
-
-			<AddFriendRouteButton/> {/* ToDo: Add a tooltip */}
 		</>
 	);
 };
