@@ -5,17 +5,29 @@ import {Button} from "@nextui-org/button";
 import {Input} from "@nextui-org/input";
 import {useState} from "react";
 import {useSession} from "next-auth/react";
+import {useRouter} from "next/navigation";
 
-const CreateConversationForm = ({users}) => {
+const CreateConversationForm = ({users, close}) => {
 	const session = useSession();
+	const router = useRouter();
 	const [value, setValue] = useState("");
 	const [selectedUsers, setSelectedUsers] = useState([]);
+	const [loading, setLoading] = useState(false);
+
+	const [errors, setErrors] = useState(false);
 
 	const selectValueChanged = (value) => {
 		setSelectedUsers(Array.from(value.values()));
 	}
 
 	const sendForm = async () => {
+		if(selectedUsers.length === 0) {
+			setErrors(true);
+			return;
+		}
+
+		setLoading(true);
+
 		const response = await fetch("/api/chats/create", {
 			method: "POST",
 			body: JSON.stringify({
@@ -23,7 +35,20 @@ const CreateConversationForm = ({users}) => {
 				name: value,
 				users: selectedUsers
 			})
-		}).then((res) => res.json()).catch((err) => console.error(err));
+		}).then((res) => res.json()).catch((err) => {
+			console.error(err);
+			return err;
+		});
+
+		if(response.status === 200){
+			router.refresh();
+		}else{
+			const message = response.error || response.message || "An error occurred";
+			alert(message);
+		}
+
+		setLoading(false);
+		close();
 	}
 
 	return (
@@ -38,9 +63,9 @@ const CreateConversationForm = ({users}) => {
 				onValueChange={setValue}
 			/>
 
-			<SelectUsers users={users} selectionChanged={selectValueChanged}/>
+			<SelectUsers users={users} selectionChanged={selectValueChanged} errors={errors}/>
 
-			<Button variant="ghost" onPress={sendForm}>
+			<Button variant="ghost" onPress={sendForm} isLoading={loading}>
 				Create
 			</Button>
 		</div>

@@ -7,10 +7,11 @@ import {useEffect, useState} from "react";
 /**
  * @param users {Array<SelectUser>} - Array of users
  * @param selectionChanged {function} - Function that will be called when selection changes
+ * @param errors {boolean} - If there are errors
  * @returns {JSX.Element}
  * @constructor
  */
-const SelectUsers = ({users, selectionChanged}) => {
+const SelectUsers = ({users, selectionChanged, errors}) => {
 	const [values, setValues] = useState(new Set([]));
 
 	useEffect(() => {
@@ -30,6 +31,7 @@ const SelectUsers = ({users, selectionChanged}) => {
 				onSelectionChange={setValues}
 				className="max-w-xs"
 				variant="bordered"
+				errorMessage={errors ? "You need to select at least one user" : null}
 			>
 				{(user) => (
 					<SelectItem
