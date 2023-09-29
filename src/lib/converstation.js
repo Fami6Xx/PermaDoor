@@ -16,6 +16,7 @@ export const getAllConversations = async (userId) => {
 		},
 		select: {
 			id: true,
+			name: true,
 			users: {
 				select: {
 					id: true,
