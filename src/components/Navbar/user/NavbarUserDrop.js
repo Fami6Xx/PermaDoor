@@ -18,6 +18,7 @@ const NavbarUserDrop = ({userRoutes, image, email, name}) => {
 				<Avatar
 					showFallback
 					isBordered
+					isFocusable
 					src={image}
 					radius="sm"
 					aria-label="User menu"
