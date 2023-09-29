@@ -27,14 +27,12 @@ export async function POST(request) {
 	const currentFriendsIds = currentFriends.map((friend) => friend.id);
 
 	const isFriends = desiredFriends.every((friend) => currentFriendsIds.includes(friend));
-	console.log(isFriends);
 	if(!isFriends){
 		return NextResponse.json({status: 400, error: "You are not friends with the selected users"});
 	}
 
 	// Create conversation
 	const conversation = await createConversation(session.user.id, desiredFriends, requestJSON.name);
-	console.log(conversation);
 
 	return NextResponse.json({status: 200, message: "Conversation created"});
 }
