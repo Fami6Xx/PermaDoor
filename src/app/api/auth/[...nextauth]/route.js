@@ -3,6 +3,10 @@ import DiscordProvider from "next-auth/providers/discord"
 import prisma from "@/lib/prisma";
 import {PrismaAdapter} from "@auth/prisma-adapter";
 
+/**
+ *
+ * @type {AuthOptions}
+ */
 export const authOptions = {
 	adapter: PrismaAdapter(prisma),
 	secret: process.env.AUTH_SECRET,
