@@ -3,6 +3,7 @@ import {getServerSession} from "next-auth";
 import {authOptions} from "@/app/api/auth/[...nextauth]/route";
 import CreateConversationButton from "@/components/Chats/CreateConverstationButton";
 import {getUserFriendsInfoById} from "@/lib/friends";
+import ChatCard from "@/components/Chats/Card/ChatCard";
 
 const Page = async () => {
 	const session = await getServerSession(authOptions);
@@ -10,8 +11,17 @@ const Page = async () => {
 	const conversations = await getAllConversations(session.user.id);
 	return (
 		<>
-			<h1 className="text-2xl font-bold">Chats</h1>
-			<pre>{JSON.stringify(conversations, null, 1)}</pre>
+
+			<div className="w-full md:m-auto md:w-[80vw] mt-4 md:mt-4 box-border">
+				<div className="w-[calc(100%)] p-4 md:p-7 md:w-[calc(100%-56px)] flex flex-col gap-4">
+					{
+						conversations.map((conversation, id) => (
+							<ChatCard conversation={conversation} key={id}/>
+						))
+					}
+				</div>
+			</div>
+
 
 			<CreateConversationButton users={friends}/>
 		</>
