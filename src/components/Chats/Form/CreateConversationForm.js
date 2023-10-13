@@ -6,6 +6,9 @@ import {Input} from "@nextui-org/input";
 import {useState} from "react";
 import {useSession} from "next-auth/react";
 import {useRouter} from "next/navigation";
+import {Checkbox} from "@nextui-org/checkbox";
+import {Tooltip} from "@nextui-org/tooltip";
+import {Badge} from "@nextui-org/badge";
 
 const CreateConversationForm = ({users, close}) => {
 	const session = useSession();
@@ -27,6 +30,8 @@ const CreateConversationForm = ({users, close}) => {
 		}
 
 		setLoading(true);
+
+		// ToDo: Add encryption support
 
 		const response = await fetch("/api/chats/create", {
 			method: "POST",
@@ -64,6 +69,15 @@ const CreateConversationForm = ({users, close}) => {
 			/>
 
 			<SelectUsers users={users} selectionChanged={selectValueChanged} errors={errors}/>
+
+			<div className="justify-center">
+				<Checkbox color="default">Password secured</Checkbox>
+				<Tooltip content="The password will be set when first accessing the conversation." color="warning" showArrow>
+					<Badge content="?" color="default" isOneChar>
+						<p className="ml-2">⠀</p>
+					</Badge>
+				</Tooltip>
+			</div>
 
 			<Button variant="ghost" onPress={sendForm} isLoading={loading}>
 				Create
