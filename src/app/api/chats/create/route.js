@@ -32,7 +32,7 @@ export async function POST(request) {
 	}
 
 	// Check if encryption is selected
-	const encryption = !!requestJSON.encryption;
+	const encryption = !!requestJSON.encrypted;
 
 	// Create conversation
 	const conversation = await createConversation(session.user.id, desiredFriends, requestJSON.name, encryption);

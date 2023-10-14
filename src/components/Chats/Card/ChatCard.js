@@ -17,7 +17,15 @@ const ChatCard = ({conversation}) => {
 					</div>
 				</CardHeader>
 				<CardBody>
-					Bodyyyy (Message)
+					{
+						conversation.encrypted ? (
+							<p>Conversation encrypted</p>
+						)
+							:
+							(
+								<p>Message</p>
+							)
+					}
 				</CardBody>
 			</Card>
 		</>
