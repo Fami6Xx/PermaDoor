@@ -31,8 +31,11 @@ export async function POST(request) {
 		return NextResponse.json({status: 400, error: "You are not friends with the selected users"});
 	}
 
-	// Create conversation
-	const conversation = await createConversation(session.user.id, desiredFriends, requestJSON.name);
+	// Check if encryption is selected
+	const encryption = !!requestJSON.encryption;
 
-	return NextResponse.json({status: 200, message: "Conversation created"});
+	// Create conversation
+	const conversation = await createConversation(session.user.id, desiredFriends, requestJSON.name, encryption);
+
+	return NextResponse.json({status: 200, message: "Conversation created", conversation: conversation});
 }

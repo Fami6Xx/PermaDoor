@@ -15,6 +15,7 @@ const CreateConversationForm = ({users, close}) => {
 	const router = useRouter();
 	const [value, setValue] = useState("");
 	const [selectedUsers, setSelectedUsers] = useState([]);
+	const [encrypted, setEncrypted] = useState(false);
 	const [loading, setLoading] = useState(false);
 
 	const [errors, setErrors] = useState(false);
@@ -31,14 +32,13 @@ const CreateConversationForm = ({users, close}) => {
 
 		setLoading(true);
 
-		// ToDo: Add encryption support
-
 		const response = await fetch("/api/chats/create", {
 			method: "POST",
 			body: JSON.stringify({
 				userId: session.data.user.id,
 				name: value,
-				users: selectedUsers
+				users: selectedUsers,
+				encrypted: encrypted
 			})
 		}).then((res) => res.json()).catch((err) => {
 			console.error(err);
@@ -71,7 +71,7 @@ const CreateConversationForm = ({users, close}) => {
 			<SelectUsers users={users} selectionChanged={selectValueChanged} errors={errors}/>
 
 			<div className="justify-center">
-				<Checkbox color="default">Password secured</Checkbox>
+				<Checkbox color="default" isSelected={encrypted} onValueChange={setEncrypted}>Password secured</Checkbox>
 				<Tooltip content="The password will be set when first accessing the conversation." color="warning" showArrow>
 					<Badge content="?" color="default" isOneChar>
 						<p className="ml-2">⠀</p>

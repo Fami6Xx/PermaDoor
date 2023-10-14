@@ -34,11 +34,14 @@ export const getAllConversations = async (userId) => {
 }
 
 /**
+ * Creates a conversation between users and puts it in the database
+ *
  * @param userId {string} - ID of the user
  * @param users {Array<string>} - Array of selected users to have a conversation with
  * @param name {string|undefined} - Name of the conversation (optional)
+ * @param encryption {boolean} - If the conversation is encrypted
  */
-export const createConversation = async (userId, users, name) => {
+export const createConversation = async (userId, users, name, encryption) => {
 	users.push(userId);
 
 	if(!name || name.length === 0 || name.trim().length === 0) name = "A very secret conversation";
@@ -47,6 +50,7 @@ export const createConversation = async (userId, users, name) => {
 	return prisma.conversation.create({
 		data: {
 			name: name,
+			encrypted: encryption,
 			users: {
 				connect: users.map((user) => ({id: user}))
 			}
