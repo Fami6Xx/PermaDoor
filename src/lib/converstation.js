@@ -18,6 +18,7 @@ export const getAllConversations = async (userId) => {
 			id: true,
 			name: true,
 			encrypted: true,
+			lastAction: true,
 			users: {
 				select: {
 					id: true,
@@ -32,6 +33,22 @@ export const getAllConversations = async (userId) => {
 	if(conversations.length === 0) return [];
 
 	return conversations;
+}
+
+/**
+ * Updates last action of a conversation
+ * @param conversationId {string} - ID of the conversation
+ * @returns {Promise<Conversation>}
+ */
+export const triggerLastAction = async (conversationId) => {
+	return prisma.conversation.update({
+		where: {
+			id: conversationId
+		},
+		data: {
+			last_action: new Date()
+		}
+	});
 }
 
 /**

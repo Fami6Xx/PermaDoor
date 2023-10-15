@@ -9,6 +9,12 @@ const Page = async () => {
 	const session = await getServerSession(authOptions);
 	const friends = await getUserFriendsInfoById(session.user.id);
 	const conversations = await getAllConversations(session.user.id);
+
+	// Sort conversations by last action
+	conversations.sort((a, b) => {
+		return new Date(b.last_action) - new Date(a.last_action);
+	});
+
 	return (
 		<>
 

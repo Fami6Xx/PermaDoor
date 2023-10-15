@@ -80,11 +80,12 @@ model FriendRequest {
 }
 
 model Conversation {
-  id        String    @id @default(cuid())
-  name      String    @default("Conversation")
-  encrypted Boolean   @default(false)
-  users     User[]
-  messages  Message[]
+  id         String    @id @default(cuid())
+  name       String    @default("Conversation")
+  encrypted  Boolean   @default(false)
+  lastAction DateTime? @default(now())
+  users      User[]
+  messages   Message[]
 }
 
 model Message {
