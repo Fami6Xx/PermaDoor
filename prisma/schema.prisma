@@ -89,11 +89,11 @@ model Conversation {
 }
 
 model Message {
-  id             String   @id @default(cuid())
+  id             String @id @default(cuid())
   authorId       String
   conversationId String
   message        String
-  postedAt       DateTime @default(now())
+  postedAt       Int
 
   author       User         @relation(fields: [authorId], references: [id])
   conversation Conversation @relation(fields: [conversationId], references: [id], onDelete: Cascade)
