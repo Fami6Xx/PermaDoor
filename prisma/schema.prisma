@@ -83,7 +83,7 @@ model Conversation {
   id         String    @id @default(cuid())
   name       String    @default("Conversation")
   encrypted  Boolean   @default(false)
-  lastAction DateTime? @default(now())
+  lastAction Int
   users      User[]
   messages   Message[]
 }

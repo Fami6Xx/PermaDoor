@@ -12,7 +12,10 @@ const Page = async () => {
 
 	// Sort conversations by last action
 	conversations.sort((a, b) => {
-		return new Date(b.last_action) - new Date(a.last_action);
+		console.log("Sorting: ", a, b);
+		console.log("Output: ", b.lastAction - a.lastAction);
+		console.log("")
+		return b.lastAction - a.lastAction;
 	});
 
 	return (
