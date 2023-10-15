@@ -46,7 +46,7 @@ export const triggerLastAction = async (conversationId) => {
 			id: conversationId
 		},
 		data: {
-			last_action: new Date.now()
+			lastAction: Date.now() / 1000,
 		}
 	});
 }
@@ -69,7 +69,7 @@ export const createConversation = async (userId, users, name, encryption) => {
 		data: {
 			name: name,
 			encrypted: encryption,
-			lastAction: new Date.now(),
+			lastAction: Date.now() / 1000,
 			users: {
 				connect: users.map((user) => ({id: user}))
 			}
