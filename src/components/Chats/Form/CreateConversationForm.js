@@ -70,7 +70,7 @@ const CreateConversationForm = ({users, close}) => {
 
 			<SelectUsers users={users} selectionChanged={selectValueChanged} errors={errors}/>
 
-			<div className="justify-center">
+			<div>
 				<Checkbox color="default" isSelected={encrypted} onValueChange={setEncrypted}>Password secured</Checkbox>
 				<Tooltip content="The password will be set when first accessing the conversation." color="warning" showArrow>
 					<Badge content="?" color="default" isOneChar>
